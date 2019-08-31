@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7-buster
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install Factor
+          command: |
+            cd /tmp
+            wget -q -O - http://downloads.factorcode.org/releases/0.98/factor-linux-x86-64-0.98.tar.gz | tar xzf -
+            sudo mkdir -p /opt
+            sudo mv /tmp/factor /opt/factor
+
+      - run:
+          name: Run Tests
+          command: |
+            export PATH=/opt/factor:$PATH
+            python test/run-tests.py -v
