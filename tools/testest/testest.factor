@@ -1,7 +1,7 @@
 ! Copyright 2019 nomennescio
 
 USING: accessors continuations debugger formatting io io.styles kernel locals math namespaces
-parser prettyprint quotations sequences system ;
+parser prettyprint prettyprint.config quotations sequences system ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl nano-count ;
@@ -12,9 +12,11 @@ IN: tools.testest
 
 : lf ( -- ) "<:LF:>" write ;
 
+: pprint-unlimited ( obj -- ) [ pprint ] without-limits ;
+
 : seq. ( seq -- )
   [
-    [ lf pprint-short ]
+    [ lf pprint-unlimited ]
     [ drop [ error-in-pprint ] keep write-object ]
     recover
   ] each
