@@ -1,16 +1,19 @@
 #!/usr/bin/env python
-# Copyright 2019 nomennescio
+# Copyright 2019-2022 nomennescio
 
 import glob, os, re, sys
 
 passed, failed, verbose, quiet = 0, 0, 0, 0
 
+# run Factor on source code file
 def run (factorfile):
     return os.popen ("bash -c 'FACTOR_ROOTS=`pwd`/.. factor " + factorfile + "'").readlines ()
 
+# remove timing information
 def timeless (lines):
     return [re.sub(r'\d+', '0', l) if "<COMPLETEDIN::>" in l else l for l in lines]
 
+# test single Factor source code file
 def test (filename):
     global passed, failed
     actual = run (filename)

@@ -1,0 +1,88 @@
+
+<DESCRIBE::>custom message
+
+<IT::>short strings
+
+<PASSED::>Just passed
+
+<PASSED::>Just passed
+
+<COMPLETEDIN::>0.066171 ms
+
+<IT::>failing compares
+
+<FAILED::>Just failed
+
+<FAILED::>Just failed
+
+<COMPLETEDIN::>0.057857 ms
+
+<IT::>short strings
+
+<PASSED::>Test passed
+
+<PASSED::>Test passed
+
+<COMPLETEDIN::>0.018855 ms
+
+<IT::>failing compares
+
+<FAILED::>Expected :<:LF:>"Hello Worlds!"<:LF:>but got :<:LF:>"Hello World!"
+
+<FAILED::>Expected :<:LF:>"Hello Worlds! "<:LF:>but got :<:LF:>"Hello Worlds!"
+
+<COMPLETEDIN::>0.131308 ms
+
+<IT::>short strings
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.019944 ms
+
+<IT::>failing compares
+
+<FAILED::>Test Failed : Expected :<:LF:>"Hello Worlds!"<:LF:>but got :<:LF:>"Hello World!"
+
+<FAILED::>Test Failed : Expected :<:LF:>"Hello Worlds! "<:LF:>but got :<:LF:>"Hello Worlds!"
+
+<COMPLETEDIN::>0.060291 ms
+
+<COMPLETEDIN::>0.540606 ms
+
+<DESCRIBE::>nested custom messages
+
+<IT::>short strings
+
+<PASSED::>Passed 1
+
+<PASSED::>Passed 2
+
+<COMPLETEDIN::>0.031492 ms
+
+<IT::>failing compares
+
+<FAILED::>Test failed A Expected :<:LF:>"Hello Worlds!"<:LF:>but got :<:LF:>"Hello World!"
+
+<FAILED::>Test failed A Expected :<:LF:>"Hello Worlds! "<:LF:>but got :<:LF:>"Hello Worlds!"
+
+<COMPLETEDIN::>0.044357 ms
+
+<IT::>short strings
+
+<PASSED::>Test passed B
+
+<PASSED::>Test passed B
+
+<COMPLETEDIN::>0.018118 ms
+
+<IT::>failing compares
+
+<FAILED::>Failed 3
+
+<FAILED::>Failed 4
+
+<COMPLETEDIN::>0.035839 ms
+
+<COMPLETEDIN::>0.151897 ms

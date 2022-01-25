@@ -1,7 +1,7 @@
-! Copyright 2019 nomennescio
+! Copyright 2019-2022 nomennescio
 
-USING: accessors continuations debugger formatting io io.styles kernel locals math namespaces
-parser prettyprint prettyprint.config quotations sequences system ;
+USING: accessors continuations debugger formatting fry io io.styles kernel locals math
+namespaces parser prettyprint prettyprint.config quotations sequences system ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl nano-count ;
@@ -22,13 +22,17 @@ IN: tools.testest
   ] each
 ;
 
-! user redefinable test result messages
+! user redefinable test result message quotations
 
 SYMBOL: test-passed.
 SYMBOL: test-failed.
 
 [ "Test Passed" write ] test-passed. set-global
 [ "Test Failed : " write error. ] test-failed. set-global
+
+: with-passed ( passed quot -- ) '[ _ test-passed. set @ ] with-scope ; inline
+: with-failed ( failed quot -- ) '[ _ test-failed. set @ ] with-scope ; inline
+: with-passed-failed ( passed failed quot -- ) '[ _ test-passed. set _ test-failed. set @ ] with-scope ; inline
 
 <PRIVATE
 
