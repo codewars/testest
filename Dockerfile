@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04 AS os
 
 ENV LANG=C.UTF-8
 
@@ -14,6 +14,8 @@ RUN set -ex; \
         ca-certificates \
     ; \
     rm -rf /var/lib/apt/lists/*;
+
+FROM os AS factor
 
 RUN set -ex; \
     mkdir -p /opt; \
@@ -37,9 +39,14 @@ RUN set -ex; \
         /opt/factor/extra/talks \
     ;
 
-# Deploy testest library
-#RUN set -ex; \
-#    (cd /opt/factor; ./factor -run=codewars.imager)
+FROM factor AS testest
+
+COPY ./. /opt/factor/work/
+
+FROM testest AS reimage
+
+RUN set -ex; \
+    (cd /opt/factor; ./factor -run=codewars.imager)
 
 ENV PATH=/opt/factor:$PATH \
     FACTOR_ROOTS=/workspace
