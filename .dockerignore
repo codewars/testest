@@ -3,6 +3,5 @@
 .dockerignore
 Dockerfile
 **/*.md
-docker
 example
 test
