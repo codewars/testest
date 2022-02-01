@@ -1,0 +1,7 @@
+# Copyright 2022 nomennescio, see LICENCSE.md for license
+.git
+.dockerignore
+Dockerfile
+**/*.md
+example
+test
