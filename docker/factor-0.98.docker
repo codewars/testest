@@ -37,10 +37,10 @@ RUN set -ex; \
         /opt/factor/extra/talks \
     ;
 
-# Add testest
+# Deploy testest library
 RUN set -ex; \
-    mkdir -p /opt/factor/work/tools/testest; \
-    wget -q -O - https://raw.githubusercontent.com/codewars/testest/v0.2.1/tools/testest/testest.factor > /opt/factor/work/tools/testest/testest.factor;
+    wget -q -O - https://raw.githubusercontent.com/codewars/testest/v0.2.1/docker/factor-0.98.deploy \
+    | FACTOR_DIR=/opt/factor URL_BASE=https://raw.githubusercontent.com/codewars/testest/v0.2.1 bash -
 
 # Create Codewars optimized Factor image
 RUN set -ex; \
