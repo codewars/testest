@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS os
+FROM ubuntu:18.04
 
 ENV LANG=C.UTF-8
 
@@ -15,10 +15,12 @@ RUN set -ex; \
     ; \
     rm -rf /var/lib/apt/lists/*;
 
-FROM os AS factor
+RUN set -ex; \
+    mkdir -p /opt/factor/work;
+
+COPY ./. /opt/factor/work/
 
 RUN set -ex; \
-    mkdir -p /opt; \
     cd /opt; \
     wget -q -O - https://downloads.factorcode.org/releases/0.98/factor-linux-x86-64-0.98.tar.gz | tar xzf -; \
 # To minimize the size, remove misc/ (editor support, icons), some of extra/ (extra libs and apps)
@@ -36,17 +38,10 @@ RUN set -ex; \
         /opt/factor/extra/project-euler \
         /opt/factor/extra/rosetta-code \
         /opt/factor/extra/audio/engine/test \
-        /opt/factor/extra/talks \
+        /opt/factor/extra/talks; \
+# Reimage factor.image
+        (cd /opt/factor; ./factor -run=codewars.imager) \
     ;
-
-FROM factor AS testest
-
-COPY ./. /opt/factor/work/
-
-FROM testest AS reimage
-
-RUN set -ex; \
-    (cd /opt/factor; ./factor -run=codewars.imager)
 
 ENV PATH=/opt/factor:$PATH \
     FACTOR_ROOTS=/workspace
