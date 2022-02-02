@@ -17,6 +17,9 @@ TUPLE: margin { range interval read-only } { central read-only } ;
 : [a-e,a+e] ( a epsilon -- margin ) [ - ] [ drop ] [ + ] 2tri <margin> ;
 : [a-%,a+%] ( a percent -- margin ) over * 100 / [a-e,a+e] ;
 
+ALIAS: ±  [a-e,a+e]
+ALIAS: ±% [a-%,a+%]
+
 ! methods
 
 ! convert object to margin. prerequisite for comparisons
@@ -26,6 +29,10 @@ GENERIC: >margin ( obj -- margin )
 M: object >margin drop f ;
 M: margin >margin ;
 M: real >margin dup dup <margin> ;
+
+ALIAS: >± >margin
+
+! margins compare equal if one contains the other
 
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
 
