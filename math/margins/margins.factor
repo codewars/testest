@@ -1,7 +1,8 @@
 ! Copyright 2022 nomennescio
+! See LICENSE.md for license
 
 ! margins are like intervals with a central value and left and right acceptable error margins
-! margins compare equal if one contains the other
+! margins compare equal if one contains the other, to support inexact comparisons using equal ("=")
 
 USING: accessors combinators.short-circuit kernel math math.intervals prettyprint.custom prettyprint.sections sequences ;
 IN: math.margins
@@ -18,15 +19,16 @@ TUPLE: margin { range interval read-only } { central read-only } ;
 
 ! methods
 
+! convert object to margin. prerequisite for comparisons
+
 GENERIC: >margin ( obj -- margin )
 
 M: object >margin drop f ;
 M: margin >margin ;
-M: real >margin dup dup <margin> ; ! M: real >margin 0 [a-e,a+e] ; less efficient?
+M: real >margin dup dup <margin> ;
 
-! M: margin equal? >margin dup margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ; ! asymmetrical, therefore not an equality
-! M: margin equal? [ >margin ] bi@ [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ; ! won't dispatch on non-margins
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
 
 ! custom prettyprinting
+
 M: margin pprint* [ range>> to>> first ] [ central>> ]  bi [ - ] keep pprint* "±" text pprint* ;
