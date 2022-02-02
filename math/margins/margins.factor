@@ -22,6 +22,8 @@ GENERIC: >margin ( obj -- margin )
 
 M: object >margin drop f ;
 M: margin >margin ;
-M: real >margin dup dup <margin> ; ! M: real >margin 0 [a-e,a+e] ;
+M: real >margin dup dup <margin> ; ! M: real >margin 0 [a-e,a+e] ; less efficient?
 
+! M: margin equal? >margin dup margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ; ! asymmetrical, therefore not an equality
+! M: margin equal? [ >margin ] bi@ [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ; ! won't dispatch on non-margins
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
