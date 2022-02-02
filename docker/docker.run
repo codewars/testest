@@ -1,7 +1,0 @@
-# run Codewars 'example' kata with Docker
-cd ../example
-
-WORKSPACE=/workspace/
-C=$(docker container create --rm -w $WORKSPACE qualified/factor:0.98 factor -run=kata.tests)
-docker container cp ./. $C:$WORKSPACE
-docker container start --attach $C
