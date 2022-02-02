@@ -8,4 +8,5 @@ function copy {
 }
 
 copy codewars/imager/imager.factor work/codewars/imager/imager.factor
+copy math/margins/margins.factor   work/math/margins/margins.factor
 copy tools/testest/testest.factor  work/tools/testest/testest.factor
