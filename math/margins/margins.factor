@@ -10,12 +10,16 @@ IN: math.margins
 ! class
 
 TUPLE: margin { range interval read-only } { central read-only } ;
+TUPLE: abs-error-margin < margin ;
+TUPLE: rel-error-margin < margin ;
 
 ! constructors
 
-: <margin> ( from central to -- margin ) swapd [a,b] swap margin boa ; ! does not check from <= central <= to, <interval> handles from > to
-: [a-e,a+e] ( a epsilon -- margin ) [ - ] [ drop ] [ + ] 2tri <margin> ;
-: [a-%,a+%] ( a percent -- margin ) over * 100 / [a-e,a+e] ;
+: new-margin ( from to central class -- margin ) [ [ [a,b] ] dip ] dip boa ; inline ! does not check from <= central <= to, <interval> handles from > to
+: <margin> ( from central to -- margin ) swap margin new-margin ;
+: -+a ( a b -- a-b a+b a ) [ - ] [ + ] [ drop ] 2tri ;
+: [a-e,a+e] ( a epsilon -- margin ) -+a abs-error-margin new-margin ;
+: [a-%,a+%] ( a percent -- margin ) over * 100 / -+a rel-error-margin new-margin ;
 
 ALIAS: ±  [a-e,a+e]
 ALIAS: ±% [a-%,a+%]
@@ -38,4 +42,6 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 ! custom prettyprinting
 
-M: margin pprint* [ range>> to>> first ] [ central>> ]  bi [ - ] keep pprint* "±" text pprint* ;
+M: margin pprint* [ range>> [ to>> ] [ from>> ] bi [ first ] bi@ ] [ central>> ] bi swap "<" text pprint* "…" text pprint* "…" text pprint* ">" text ;
+M: abs-error-margin pprint* [ range>> to>> first ] [ central>> ]  bi [ - ] keep pprint* "±" text pprint* ;
+M: rel-error-margin pprint* [ range>> to>> first ] [ central>> ]  bi [ [ - ] keep 100 / / ] keep pprint* "±" text pprint* "%" text ;
