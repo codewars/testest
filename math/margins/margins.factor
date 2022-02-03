@@ -17,11 +17,11 @@ TUPLE: rel-error-margin < margin ;
 
 ERROR: unordered-margin ;
 
-:: new-margin ( from central to class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
-: <margin> ( from central to -- margin ) margin new-margin ;
+:: boa-margin ( from central to class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
+: <margin> ( from central to -- margin ) margin boa-margin ;
 : -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
-: [a-e,a+e] ( a epsilon -- margin ) -.+ abs-error-margin new-margin ;
-: [a-%,a+%] ( a percent -- margin ) over * 100 / -.+ rel-error-margin new-margin ;
+: [a-e,a+e] ( a epsilon -- margin ) -.+ abs-error-margin boa-margin ;
+: [a-%,a+%] ( a percent -- margin ) over * 100 / -.+ rel-error-margin boa-margin ;
 
 ALIAS: ±  [a-e,a+e]
 ALIAS: ±% [a-%,a+%]
