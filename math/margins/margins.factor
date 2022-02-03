@@ -48,6 +48,6 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 ! custom prettyprinting
 
-M: margin pprint* [ range>> [ to>> ] [ from>> ] bi [ first ] bi@ ] [ central>> ] bi swap "<" text pprint* "…" text pprint* "…" text pprint* ">" text ;
-M: abs-error-margin pprint* [ range>> to>> first ] [ central>> ]  bi [ - ] keep pprint* "±" text pprint* ;
-M: rel-error-margin pprint* [ range>> to>> first ] [ central>> ]  bi [ [ - ] keep 100 / / ] keep pprint* "±" text pprint* "%" text ;
+M: margin pprint* margin> spin "<" text pprint* "…" text pprint* "…" text pprint* ">" text ;
+M: abs-error-margin pprint* margin> swap [ - ] keep pprint* "±" text pprint* drop ;
+M: rel-error-margin pprint* margin> swap [ [ - ] keep 100 / / ] keep pprint* "±" text pprint* "%" text drop ;
