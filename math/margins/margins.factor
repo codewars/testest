@@ -54,6 +54,4 @@ M: rel-error-margin present margin> swap [ [ - ] keep 100 / / ] keep [ # "±" % 
 
 ! custom prettyprinting
 
-M: margin pprint* margin> spin "<" text pprint* "…" text pprint* "…" text pprint* ">" text ;
-M: abs-error-margin pprint* margin> swap [ - ] keep pprint* "±" text pprint* drop ;
-M: rel-error-margin pprint* margin> swap [ [ - ] keep 100 / / ] keep pprint* "±" text pprint* "%" text drop ;
+M: margin pprint* present text ;
