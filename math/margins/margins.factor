@@ -4,7 +4,7 @@
 ! margins are like intervals with a central value and left and right acceptable error margins
 ! margins compare equal if one contains the other, to support inexact comparisons using equal ("=")
 
-USING: accessors combinators.short-circuit kernel math math.intervals prettyprint.custom prettyprint.sections sequences ;
+USING: accessors combinators.short-circuit kernel locals math math.intervals prettyprint.custom prettyprint.sections sequences ;
 IN: math.margins
 
 ! class
@@ -15,7 +15,9 @@ TUPLE: rel-error-margin < margin ;
 
 ! constructors
 
-: new-margin ( from to central class -- margin ) [ [ [a,b] ] dip ] dip boa ; inline ! does not check from <= central <= to, <interval> handles from > to
+ERROR: unordered-margin ;
+
+:: new-margin ( from to central class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
 : <margin> ( from to central -- margin ) margin new-margin ;
 : -+a ( a b -- a-b a+b a ) [ - ] [ + ] [ drop ] 2tri ;
 : [a-e,a+e] ( a epsilon -- margin ) -+a abs-error-margin new-margin ;
