@@ -17,18 +17,20 @@ TUPLE: rel-error-margin < margin ;
 
 ERROR: unordered-margin ;
 
-:: new-margin ( from to central class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
-: <margin> ( from to central -- margin ) margin new-margin ;
-: -+a ( a b -- a-b a+b a ) [ - ] [ + ] [ drop ] 2tri ;
-: [a-e,a+e] ( a epsilon -- margin ) -+a abs-error-margin new-margin ;
-: [a-%,a+%] ( a percent -- margin ) over * 100 / -+a rel-error-margin new-margin ;
+:: new-margin ( from central to class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
+: <margin> ( from central to -- margin ) margin new-margin ;
+: -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
+: [a-e,a+e] ( a epsilon -- margin ) -.+ abs-error-margin new-margin ;
+: [a-%,a+%] ( a percent -- margin ) over * 100 / -.+ rel-error-margin new-margin ;
 
 ALIAS: ±  [a-e,a+e]
 ALIAS: ±% [a-%,a+%]
 
 ! methods
 
-: margin> ( margin -- from to central ) [ range>> [ from>> ] [ to>> ] bi [ first ] bi@ ] [ central>> ] bi ;
+! extract values from margin
+
+: margin> ( margin -- from central to ) [ range>> [ from>> ] [ to>> ] bi [ first ] bi@ ] [ central>> ] bi swap ;
 
 ! convert object to margin. prerequisite for comparisons
 
