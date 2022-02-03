@@ -10,8 +10,8 @@ IN: math.margins
 ! class
 
 TUPLE: margin { range interval read-only } { central real read-only } ; ! preferably margin would be a subclass of interval, but we can't reuse its constructor
-TUPLE: abs-error-margin < margin ;
-TUPLE: rel-error-margin < margin ;
+TUPLE: abs-margin < margin ;
+TUPLE: rel-margin < margin ;
 
 ! constructors
 
@@ -20,8 +20,8 @@ ERROR: unordered-margin ;
 :: boa-margin ( from central to class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
 : <margin> ( from central to -- margin ) margin boa-margin ;
 : -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
-: [a-e,a+e] ( a epsilon -- margin ) -.+ abs-error-margin boa-margin ;
-: [a-%,a+%] ( a percent -- margin ) over * 100 / -.+ rel-error-margin boa-margin ;
+: [a-e,a+e] ( a epsilon -- margin ) -.+ abs-margin boa-margin ;
+: [a-%,a+%] ( a percent -- margin ) over * 100 / -.+ rel-margin boa-margin ;
 
 ALIAS: ±  [a-e,a+e]
 ALIAS: ±% [a-%,a+%]
@@ -49,8 +49,8 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 ! present
 
 M: margin present margin> spin [ "<" % # "…" % # "…" % # ">" % ] "" make ;
-M: abs-error-margin present margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
-M: rel-error-margin present margin> swap [ [ - ] keep 100 / / ] keep [ # "±" % # "%" % ] "" make nip ;
+M: abs-margin present margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
+M: rel-margin present margin> swap [ [ - ] keep 100 / / ] keep [ # "±" % # "%" % ] "" make nip ;
 
 ! custom prettyprinting
 
