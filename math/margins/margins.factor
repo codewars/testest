@@ -9,7 +9,7 @@ IN: math.margins
 
 ! class
 
-TUPLE: margin { range interval read-only } { central read-only } ;
+TUPLE: margin { range interval read-only } { central real read-only } ;
 TUPLE: abs-error-margin < margin ;
 TUPLE: rel-error-margin < margin ;
 
