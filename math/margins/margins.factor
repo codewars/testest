@@ -16,7 +16,7 @@ TUPLE: rel-error-margin < margin ;
 ! constructors
 
 : new-margin ( from to central class -- margin ) [ [ [a,b] ] dip ] dip boa ; inline ! does not check from <= central <= to, <interval> handles from > to
-: <margin> ( from central to -- margin ) swap margin new-margin ;
+: <margin> ( from to central -- margin ) margin new-margin ;
 : -+a ( a b -- a-b a+b a ) [ - ] [ + ] [ drop ] 2tri ;
 : [a-e,a+e] ( a epsilon -- margin ) -+a abs-error-margin new-margin ;
 : [a-%,a+%] ( a percent -- margin ) over * 100 / -+a rel-error-margin new-margin ;
