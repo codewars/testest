@@ -26,6 +26,8 @@ ALIAS: ±% [a-%,a+%]
 
 ! methods
 
+: margin> ( margin -- from to central ) [ range>> [ from>> ] [ to>> ] bi [ first ] bi@ ] [ central>> ] bi ;
+
 ! convert object to margin. prerequisite for comparisons
 
 GENERIC: >margin ( obj -- margin )
