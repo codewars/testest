@@ -4,7 +4,7 @@
 ! margins are like intervals with a central value and left and right acceptable error margins
 ! margins compare equal if one contains the other, to support inexact comparisons using equal ("=")
 
-USING: accessors combinators.short-circuit kernel locals math math.intervals prettyprint.custom prettyprint.sections sequences ;
+USING: accessors combinators.short-circuit kernel locals make math math.intervals math.parser present prettyprint.custom prettyprint.sections sequences ;
 IN: math.margins
 
 ! class
@@ -45,6 +45,12 @@ ALIAS: >± >margin
 ! margins compare equal if one contains the other
 
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
+
+! present
+
+M: margin present margin> spin [ "<" % # "…" % # "…" % # ">" % ] "" make ;
+M: abs-error-margin present margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
+M: rel-error-margin present margin> swap [ [ - ] keep 100 / / ] keep [ # "±" % # "%" % ] "" make nip ;
 
 ! custom prettyprinting
 
