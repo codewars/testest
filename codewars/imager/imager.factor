@@ -6,7 +6,7 @@ IN: codewars.imager
 
 : load-and-save-image ( -- )
   "resource:core" load-root "resource:basis" load-root
-  "math.margins" "tools.testest" require
+  "math.margins" require "tools.testest" require
   image-path save-image-and-exit
 ;
 
