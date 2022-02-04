@@ -50,7 +50,7 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 M: margin present margin> spin [ "<" % # "…" % # "…" % # ">" % ] "" make ;
 M: abs-margin present margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
-M: rel-margin present margin> swap [ [ - ] keep 100 / / ] keep [ # "±" % # "%" % ] "" make nip ;
+M: rel-margin present margin> swap [ [ - ] keep / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
 
 ! custom prettyprinting
 
