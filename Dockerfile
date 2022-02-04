@@ -1,11 +1,6 @@
 FROM ubuntu:18.04
 
-ARG RELEASE=master
-ARG FACTOR_URL=https://downloads.factorcode.org/releases/0.98/factor-linux-x86-64-0.98.tar.gz
-ARG TESTEST_URL=https://raw.githubusercontent.com/codewars/testest/$RELEASE
-ARG INSTALL_DIR=/opt
-ENV FACTOR_DIR=$INSTALL_DIR/factor
-
+ARG FACTOR_VERSION=0.98
 ENV LANG=C.UTF-8
 
 RUN set -ex; \
@@ -21,33 +16,35 @@ RUN set -ex; \
     ; \
     rm -rf /var/lib/apt/lists/*;
 
-COPY docker/ /scripts/docker/
+COPY tools/testest/testest.factor /opt/factor/work/tools/testest/testest.factor
+COPY math/margins/margins.factor /opt/factor/work/math/margins/margins.factor
+COPY codewars/imager/imager.factor /opt/factor/work/codewars/imager/imager.factor
 
 RUN set -ex; \
-    cd $INSTALL_DIR; \
-    wget -q -O - $FACTOR_URL | tar xzf -; \
+    cd /opt; \
+    wget -q -O - https://downloads.factorcode.org/releases/${FACTOR_VERSION}/factor-linux-x86-64-${FACTOR_VERSION}.tar.gz | tar xzf -; \
 # To minimize the size, remove misc/ (editor support, icons), some of extra/ (extra libs and apps)
+    cd /opt/factor; \
     rm -rf \
-        $FACTOR_DIR/misc \
-        $FACTOR_DIR/extra/bunny \
-        $FACTOR_DIR/extra/images/testing \
-        $FACTOR_DIR/extra/usa-cities \
-        $FACTOR_DIR/extra/clutter \
-        $FACTOR_DIR/extra/gstreamer \
-        $FACTOR_DIR/extra/websites \
-        $FACTOR_DIR/extra/benchmark \
-        $FACTOR_DIR/extra/gpu \
-        $FACTOR_DIR/extra/snake-game \
-        $FACTOR_DIR/extra/project-euler \
-        $FACTOR_DIR/extra/rosetta-code \
-        $FACTOR_DIR/extra/audio/engine/test \
-        $FACTOR_DIR/extra/talks; \
-# install library
-    bash - < /scripts/docker/deploy.sh; \
+        ./misc \
+        ./extra/bunny \
+        ./extra/images/testing \
+        ./extra/usa-cities \
+        ./extra/clutter \
+        ./extra/gstreamer \
+        ./extra/websites \
+        ./extra/benchmark \
+        ./extra/gpu \
+        ./extra/snake-game \
+        ./extra/project-euler \
+        ./extra/rosetta-code \
+        ./extra/audio/engine/test \
+        ./extra/talks \
+    ; \
 # reimage factor.image
-    (cd $FACTOR_DIR; ./factor -run=codewars.imager)
+    ./factor -run=codewars.imager;
 
-ENV PATH=$FACTOR_DIR:$PATH \
+ENV PATH=/opt/factor:$PATH \
     FACTOR_ROOTS=/workspace
 
 USER codewarrior
