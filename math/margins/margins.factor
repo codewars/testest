@@ -1,7 +1,7 @@
 ! Copyright 2022 nomennescio
 ! See LICENSE.md for license
 
-! margins are like intervals with a central value and left and right acceptable error margins
+! margins are like intervals with a central value and left and right acceptable margins
 ! margins compare equal if one contains the other, to support inexact comparisons using equal ("=")
 
 USING: accessors combinators.short-circuit kernel locals make math math.intervals math.parser present prettyprint.custom prettyprint.sections sequences ;
@@ -42,9 +42,9 @@ M: real >margin dup dup <margin> ;
 
 ALIAS: >± >margin
 
-! margins compare equal if one contains the other
+! margins compare equal if one contains the other (not a true equality because it's reflexive and symmetric, but not transitive)
 
-M: margin hashcode* 2drop 0 ;
+M: margin hashcode* 2drop 0xbef001ed ; ! semi-unique singular value
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
 
 ! present
