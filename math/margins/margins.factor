@@ -17,7 +17,7 @@ TUPLE: rel-margin < margin ;
 
 ERROR: unordered-margin ;
 
-:: boa-margin ( from central to class -- margin )  from central < central to < and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
+:: boa-margin ( from central to class -- margin )  from central <= central to <= and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
 : <margin> ( from central to -- margin ) margin boa-margin ;
 : -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
 : [a-e,a+e] ( a epsilon -- margin ) -.+ abs-margin boa-margin ;
