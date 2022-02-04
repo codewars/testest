@@ -44,6 +44,7 @@ ALIAS: >± >margin
 
 ! margins compare equal if one contains the other
 
+M: margin hashcode* 2drop 0 ;
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
 
 ! present
