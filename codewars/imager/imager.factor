@@ -5,7 +5,8 @@ USING: memory system vocabs vocabs.hierarchy ;
 IN: codewars.imager
 
 : load-and-save-image ( -- )
-  "resource:core" load-root "resource:basis" load-root "tools.testest" require
+  "resource:core" load-root "resource:basis" load-root
+  "math.margins" "tools.testest" require
   image-path save-image-and-exit
 ;
 
