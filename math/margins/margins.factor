@@ -10,8 +10,8 @@ IN: math.margins
 ! class
 
 TUPLE: margin { range interval read-only } { central real read-only } ; ! preferably margin would be a subclass of interval, but we can't reuse its constructor
-TUPLE: abs-margin < margin ;
-TUPLE: rel-margin < margin ;
+TUPLE: abs-margin < margin ; ! margin class with absolute margin
+TUPLE: rel-margin < margin ; ! margin class with margin as percentage of central value
 
 ! constructors
 
