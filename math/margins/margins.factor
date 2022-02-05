@@ -51,24 +51,11 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 ! specific
 
-! alternative margin representations
-! swap [ # "+" % # "-" % # ">" % ] "" make ;
-! spin [ "<" % # "…" % # "…" % # ">" % ] "" make ;
-! spin [ "{" % # "," % # "," % # "}" % ] "" make ;
-! spin [ "[" % # "—" % # "—" % # "]" % ] "" make ;
-! spin [ "[" % # "―" % # "―" % # "]" % ] "" make ;
-! spin [ "[" % # "⋯" % # "⋯" % # "]" % ] "" make ;
-! spin [ # "⇀" % # "⇀" % # ] "" make ;
-
 :     margin>string (     margin -- string ) margin> spin [ # "«" % # "»" % # ] "" make ;
 : abs-margin>string ( abs-margin -- string ) margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
 : rel-margin>string ( rel-margin -- string ) margin> swap [ [ - ] keep / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
 
 ! generic
-
-! M: margin present     { margin } declare margin>string ;
-! M: abs-margin present { abs-margin } declare abs-margin>string ;
-! M: rel-margin present { rel-margin } declare rel-margin>string ;
 
 M:     margin present     margin>string ;
 M: abs-margin present abs-margin>string ;
