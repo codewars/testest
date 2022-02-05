@@ -66,6 +66,9 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 ! generic
 
+! M: margin present     { margin } declare margin>string ;
+! M: abs-margin present { abs-margin } declare abs-margin>string ;
+! M: rel-margin present { rel-margin } declare rel-margin>string ;
 
 M:     margin present     margin>string ;
 M: abs-margin present abs-margin>string ;
