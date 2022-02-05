@@ -51,13 +51,16 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 ! specific
 
+:     margin>string (     margin -- string ) margin> spin [ # "⇀" % # "⇀" % # ] "" make ;
+: abs-margin>string ( abs-margin -- string ) margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
+: rel-margin>string ( rel-margin -- string ) margin> swap [ [ - ] keep / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
 
 ! generic
 
 
-M: margin present margin> spin [ "<" % # "…" % # "…" % # ">" % ] "" make ;
-M: abs-margin present margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
-M: rel-margin present margin> swap [ [ - ] keep / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
+M:     margin present     margin>string ;
+M: abs-margin present abs-margin>string ;
+M: rel-margin present rel-margin>string ;
 
 ! custom prettyprinting
 
