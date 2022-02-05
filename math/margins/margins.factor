@@ -28,10 +28,6 @@ ALIAS: ±% [a-%,a+%]
 
 ! methods
 
-! extract values from margin
-
-: margin> ( margin -- from central to ) [ range>> [ from>> ] [ to>> ] bi [ first ] bi@ ] [ central>> ] bi swap ;
-
 ! convert object to margin. prerequisite for comparisons
 
 GENERIC: >margin ( obj -- margin )
@@ -42,10 +38,16 @@ M: real >margin dup dup <margin> ;
 
 ALIAS: >± >margin
 
+<PRIVATE
+
 ! margins compare equal if one contains the other (not a true equality because it's reflexive and symmetric, but not transitive)
 
 M: margin hashcode* 2drop 0xbef001ed ; ! semi-unique singular value
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
+
+! extract values from margin
+
+: margin> ( margin -- from central to ) [ range>> [ from>> ] [ to>> ] bi [ first ] bi@ ] [ central>> ] bi swap ;
 
 ! >string conversions
 
@@ -64,3 +66,5 @@ M: rel-margin present rel-margin>string ;
 ! custom prettyprinting
 
 M: margin pprint* present text ;
+
+PRIVATE>
