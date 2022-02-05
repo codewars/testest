@@ -15,9 +15,9 @@ TUPLE: rel-margin < margin ;
 
 ! constructors
 
-ERROR: unordered-margin ;
+ERROR: unordered-margin ; ! guards invariant from<=central<=to
 
-:: boa-margin ( from central to class -- margin )  from central <= central to <= and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
+:: boa-margin ( from central to class -- margin ) from central <= central to <= and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
 : <margin> ( from central to -- margin ) margin boa-margin ;
 : -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
 : [a-e,a+e] ( a epsilon -- margin ) -.+ abs-margin boa-margin ;
@@ -47,7 +47,13 @@ ALIAS: >± >margin
 M: margin hashcode* 2drop 0xbef001ed ; ! semi-unique singular value
 M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap interval-subset? ] } 2|| ] [ 2drop f ] if ;
 
-! present
+! >string conversions
+
+! specific
+
+
+! generic
+
 
 M: margin present margin> spin [ "<" % # "…" % # "…" % # ">" % ] "" make ;
 M: abs-margin present margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
