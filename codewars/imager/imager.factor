@@ -5,8 +5,8 @@ USING: memory namespaces sequences sequences.rotated system vectors vocabs vocab
 IN: codewars.imager
 
 : load-and-save-image ( -- )
-  "resource:pre" add-vocab-root vocab-roots [ -1 <rotated> ] change-global
-  { "resource:core" "resource:basis" "resource:pre" "resource:work" } [ load-root ] each
+  "resource:pre" add-vocab-root vocab-roots [ -1 <rotated> >vector ] change-global
+  "resource:extra" vocab-roots get remove! [ load-root ] each
   image-path save-image-and-exit
 ;
 
