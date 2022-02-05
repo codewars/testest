@@ -51,7 +51,7 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 ! specific
 
-:     margin>string (     margin -- string ) margin> spin [ # "⇀" % # "⇀" % # ] "" make ;
+:     margin>string (     margin -- string ) margin> spin [ # "«" % # "»" % # ] "" make ;
 : abs-margin>string ( abs-margin -- string ) margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
 : rel-margin>string ( rel-margin -- string ) margin> swap [ [ - ] keep / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
 
