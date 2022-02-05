@@ -17,8 +17,8 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*;
 
 COPY tools/testest/testest.factor /opt/factor/work/tools/testest/testest.factor
-COPY codewars/imager/imager.factor /opt/factor/pre/codewars/imager/imager.factor
-COPY math/margins/margins.factor /opt/factor/work/math/margins/margins.factor
+COPY codewars/imager/imager.factor /opt/factor/work/codewars/imager/imager.factor
+COPY math/margins/margins.factor /opt/factor/pre/math/margins/margins.factor
 
 RUN set -ex; \
     cd /opt; \
