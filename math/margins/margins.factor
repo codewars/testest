@@ -20,8 +20,8 @@ ERROR: unordered-margin ; ! guards invariant from<=central<=to
 :: boa-margin ( from central to class -- margin ) from central <= central to <= and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
 : <margin> ( from central to -- margin ) margin boa-margin ;
 : -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
-: [a-e,a+e] ( a epsilon -- margin ) -.+ abs-margin boa-margin ;
-: [a-%,a+%] ( a percent -- margin ) over * 100 / -.+ rel-margin boa-margin ;
+: [a-e,a+e] ( a epsilon -- margin ) abs -.+ abs-margin boa-margin ;
+: [a-%,a+%] ( a percent -- margin ) over * 100 / abs -.+ rel-margin boa-margin ;
 
 ALIAS: ±  [a-e,a+e]
 ALIAS: ±% [a-%,a+%]
@@ -55,7 +55,7 @@ M: margin equal? over margin? [ [ range>> ] bi@ { [ interval-subset? ] [ swap in
 
 :     margin>string (     margin -- string ) margin> spin [ # "«" % # "»" % # ] "" make ;
 : abs-margin>string ( abs-margin -- string ) margin> swap [ - ] keep [ # "±" % # ] "" make nip ;
-: rel-margin>string ( rel-margin -- string ) margin> swap [ [ - ] keep / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
+: rel-margin>string ( rel-margin -- string ) margin> swap [ [ - ] keep abs / 100 * ] keep [ # "±" % # "%" % ] "" make nip ;
 
 ! generic
 
