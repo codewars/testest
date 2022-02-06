@@ -9,6 +9,8 @@ IN: math.margins
 
 <PRIVATE
 
+: -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
+
 ! class
 
 TUPLE: margin { range interval read-only } { central real read-only } ; ! preferably margin would be a subclass of interval, but we can't reuse its constructor
@@ -21,8 +23,6 @@ ERROR: unordered-margin ; ! guards invariant from<=central<=to
 
 :: boa-margin ( from central to class -- margin ) from central <= central to <= and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
 : <margin> ( from central to -- margin ) margin boa-margin ;
-
-: -.+ ( a b -- a-b a a+b ) [ - ] [ drop ] [ + ] 2tri ;
 
 PRIVATE>
 
