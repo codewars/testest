@@ -22,10 +22,10 @@ TUPLE: rel-margin < margin ; ! margin class with margin as percentage of central
 ERROR: unordered-margin ; ! guards invariant from<=central<=to
 
 :: boa-margin ( from central to class -- margin ) from central <= central to <= and [ from to [a,b] central ] [ unordered-margin ] if class boa ; inline
-: <margin> ( from central to -- margin ) margin boa-margin ;
 
 PRIVATE>
 
+: <margin> ( from central to -- margin ) margin boa-margin ;
 : [a-e,a+e] ( a epsilon -- margin ) abs -.+ abs-margin boa-margin ;
 : [a-%,a+%] ( a percent -- margin ) over * 100 / abs -.+ rel-margin boa-margin ;
 
