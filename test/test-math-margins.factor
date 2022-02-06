@@ -1,6 +1,6 @@
 ! Copyright 2022 nomennescio
 
-USING: accessors debugger io kernel math.constants math.margins namespaces present sequences tools.testest ;
+USING: accessors debugger io kernel math.constants math.margins math.margins.private namespaces present sequences tools.testest ;
 IN: tests
 
 : run-tests ( -- )
