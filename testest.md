@@ -1,6 +1,6 @@
 ﻿## tools.testest
-*"If thou testest me, thou wilt find no wickedness in me"
-Psalms 17:3*
+*"If thou testest me, thou wilt find no wickedness in me"*
+Psalms 17:3
 
 ### Vocabulary to test Factor code on Codewars
 
