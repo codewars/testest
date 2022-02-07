@@ -2,7 +2,9 @@
 
 Vocabulary to test Factor code on Codewars.
 
-### Example
+See [documentation](testest.md)
+
+### Example testest setup
 
 See [example](./example).
 
