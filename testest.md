@@ -105,8 +105,10 @@ Reals can be converted in margins for comparison with `>margin` or its alias `>�
 
 ```
 : run-tests ( -- )
-  <{ 20 sin >± -> 0 1 ± }>
-  <{ calculate-pi >± -> pi 1 ±% }>
+  "Example test" describe#{
+    "Absolute margin" it#{ <{ 20 sin >± -> 0 1 ± }> }#
+    "Relative margin" it#{ <{ calculate-pi >± -> pi 1 ±% }> }#
+  }#
 ;
 ```
 
