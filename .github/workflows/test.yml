@@ -15,4 +15,4 @@ jobs:
           wget -q -O - https://downloads.factorcode.org/releases/0.98/factor-linux-x86-64-0.98.tar.gz | tar xzf -
       - name: Run Tests
         run: |
-          PATH=~/opt/factor:$PATH python test/run-tests.py -v
+          PATH=~/opt/factor:$PATH python3 test/run-tests.py -v

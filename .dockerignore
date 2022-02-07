@@ -1,5 +1,6 @@
 # Copyright 2022 nomennescio, see LICENCSE.md for license
 .git
+.github
 .dockerignore
 Dockerfile
 **/*.md

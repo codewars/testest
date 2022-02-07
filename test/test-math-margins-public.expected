@@ -1,0 +1,42 @@
+
+<DESCRIBE::>math.margins
+
+<IT::>constructors
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.179599 ms
+
+<IT::>constructors aliases
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.013899 ms
+
+<IT::>conversion
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.076472 ms
+
+<IT::>equals
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.050478 ms
+
+<COMPLETEDIN::>0.659280 ms

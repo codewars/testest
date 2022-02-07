@@ -1,0 +1,64 @@
+
+<DESCRIBE::>math.margins
+
+<IT::>constructors
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.073152 ms
+
+<IT::>constructors aliases
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.013261 ms
+
+<IT::>conversion
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.028197 ms
+
+<IT::>>string
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.095985 ms
+
+<IT::>hashcode
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.008112 ms
+
+<IT::>equals
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.026969 ms
+
+<COMPLETEDIN::>0.483238 ms
