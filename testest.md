@@ -57,3 +57,58 @@ Typical Factor testcode to test a solution `solve ( a b c -- d )` looks like:
   }#
 ;
 ```
+
+### Custom pass and fail messages
+
+Default messages are shown when a test passes or fails. These message can customised using `with-passed`, `with-failed`, and `with-passed-failed` combinators, with the following signatures:
+```
+: with-passed ( passed quot -- )
+: with-failed ( failed quot -- )
+: with-passed-failed ( passed failed quot -- )
+```
+Both `passed` and `failed` are quotations, one of which is called after each test inside `quot` is executed when it passes or fails. The signature of `passed` and `failed` are:
+```
+: passed ( -- )
+: failed ( error -- )
+```
+
+The argument to `failed` is an `assert-sequence` error with slots `got` for a sequence of actual results and `expected` for a sequence of expected results. Both the `passed` and `failed` quotations can write messages to output stream. To print newlines use the `lf` word.
+
+Custom messages can be nested, and are restored outside the scope of the quotation passed to the `with-passed`, `with-failed`, and `with-passed-failed`, combinators.
+
+### Custom pass and fail messages example
+
+```
+: run-tests ( -- )
+  [ "Just passed" ] [
+    [ [ "Expected: " write expected>> seq. ] [ lf "Actual: " write got>> seq. ] bi ] [
+      <{ 1 4 add -> 5 }>
+      <{ 2 3 add -> 5 }>
+    ] with-failed
+  ] with-passed
+;
+```
+
+### Inexact value comparisons with margins
+
+In some situations solutions compute an inexact solution. The `math.margins` vocabulary can to convert `real` result into a `margin`, which can then be compared against a predefined expected value with acceptable margins defined using the implicitly used `=` by each test case. Three types of margins are supported: `margin`, `abs-margin`, and `rel-margin`, representing general margins, margins with absolute error bound, and margins with a relative error bound, each with a different visual representations, but the same from a comparison point of view. These can be constructed with
+```
+: <margin> ( from central to -- margin )
+: [a-e,a+e] ( a epsilon -- margin )
+: [a-%,a+%] ( a percent -- margin )
+```
+The latter two have aliases `±` for `[a-e,a+e]` and `±%` for `[a-%,a+%]`.
+
+Reals can be converted in margins for comparison with `>margin` or its alias `>±`. Comparing using `=` with a constructed margin will compare against the margin's boundaries, if the real falls within the boundaries true is returned, else false.
+
+### Inexact value comparison with margins example
+
+```
+: run-tests ( -- )
+  <{ 20 sin >± -> 0 1 ± }>
+  <{ calculate-pi >± -> pi 1 ±% }>
+;
+```
+
+The first example calculates a sine, converts to a margin, then compares against `0±1`, i.e. all values within the range `[-1,1]` will pass the test.
+The second examples calculates pi to a certain precision, converts it to margin, then compares against builtin `pi±1%`, i.e. all values within the range `[pi-pi*1/100, pi+pi*1/100]` will pass the test.
