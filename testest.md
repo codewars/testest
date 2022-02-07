@@ -137,4 +137,4 @@ Example usage
 ```
 pi 1 1e-10 %e ±
 ```
-creates a margin of `pi` within '1%', or absolute margin '1e-10, whatever is larger
+creates a margin of `pi` within `1%`, or absolute margin `1e-10`, whatever is larger
