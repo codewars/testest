@@ -4,7 +4,7 @@ Psalms 17:3
 
 ### Vocabulary to test Factor code on Codewars
 
-`tools.testest` is a Factor vocabulary for writing test cases on Codewars, tuned to the Codewars framework by appropriately formatted messages.
+`tools.testest` is a Factor vocabulary for writing test cases on Codewars, tuned to the Codewars framework by appropriately formatted messages written by nomennescio (https://github.com/nomennescio).
 
 ### General setup
 
