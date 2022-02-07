@@ -4,7 +4,7 @@ Psalms 17:3*
 
 ### Vocabulary to test Factor code on Codewars
 
-`tools.testest` is a Factor vocabulary for writing test cases on Codewars, tuned to the Codewars framework by appropriately formatted messages. 
+`tools.testest` is a Factor vocabulary for writing test cases on Codewars, tuned to the Codewars framework by appropriately formatted messages.
 
 ### General setup
 
@@ -37,7 +37,7 @@ Typical Factor testcode to test a solution `solve ( a b c -- d )` looks like:
 :: run-tests ( -- )
   "Specific test cases" describe#{
     "Test case 1" it#{
-      <{ 1 2 3 solve -> 6 }> 
+      <{ 1 2 3 solve -> 6 }>
     }#
     "Test case 2" it#{
       <{ 4 5 6 solve -> 15 }>
@@ -45,16 +45,14 @@ Typical Factor testcode to test a solution `solve ( a b c -- d )` looks like:
   }#
   "Random test cases" describe#{
     "Single Test Group" it#{
-	  100 [
-	    1000 random :> r 
-        <{ r r 3 * r 5 - solve -> r r 3 * r 5 - your-solve }> 
+      100 [
+        1000 random :> r
+        <{ r r 3 * r 5 - solve -> r r 3 * r 5 - your-solve }>
       ] times
     }#
-	100 [
+    100 [
       "Testing for " 1000 random :> r r number>string append
-      it#{ 
-        <{ r 2 4 solve -> r 2 4 reference-solve }>
-      }#
+      it#{ <{ r 2 4 solve -> r 2 4 reference-solve }> }#
     ] times
   }#
 ;
