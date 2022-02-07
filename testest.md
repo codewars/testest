@@ -112,3 +112,29 @@ Reals can be converted in margins for comparison with `>margin` or its alias `>�
 
 The first example calculates a sine, converts to a margin, then compares against `0±1`, i.e. all values within the range `[-1,1]` will pass the test.
 The second examples calculates pi to a certain precision, converts it to margin, then compares against builtin `pi±1%`, i.e. all values within the range `[pi-pi*1/100, pi+pi*1/100]` will pass the test.
+
+### Utility words
+
+Some users requested features to be added to the library, which although useful, might not be common enough to warrant their inclusion yet.
+
+I list these usecases here, with utility words which implement the feature
+
+##### Codewars newlines
+
+Strings to be printed on the Codewars code runner, need to use `lf` to print newlines. The `cw>` word converts embedded newlines into newlines used by the runner
+```
+: >cw ( string -- codewars-string )  "\n" "<:LF:>" replace ;
+```
+
+##### Minimum margin for relative margins
+
+When using relative margins, the closer the value gets to zero, the smaller the effective margin gets, until it is zero at value zero. The `%e` word calculates a relative margin such that it will never get smaller than `epsilon`
+```
+: %e ( value percent epsilon -- value max(rel,abs) ) [ over * 100 / ] dip max ;
+```
+
+Example usage
+```
+pi 1 1e-10 %e ±
+```
+creates a margin of `pi` within '1%', or absolute margin '1e-10, whatever is larger
