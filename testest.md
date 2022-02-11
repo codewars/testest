@@ -80,12 +80,14 @@ Custom messages can be nested, and are restored outside the scope of the quotati
 
 ```
 : run-tests ( -- )
+  ...
   [ "Just passed" ] [
     [ [ "Expected: " write expected>> seq. ] [ lf "Actual: " write got>> seq. ] bi ] [
       <{ 1 4 add -> 5 }>
       <{ 2 3 add -> 5 }>
     ] with-failed
   ] with-passed
+  ...
 ;
 ```
 
