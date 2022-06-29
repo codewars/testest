@@ -4,8 +4,8 @@ USING: accessors continuations debugger formatting fry io io.styles kernel local
 namespaces parser prettyprint prettyprint.config quotations sequences system ;
 IN: tools.testest
 
-: describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl nano-count ;
-: it#{ ( description -- starttime ) nl "<IT::>%s" printf nl nano-count ;
+: describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
+: it#{ ( description -- starttime ) nl "<IT::>%s" printf nl flush nano-count ;
 : }# ( starttime -- ) nano-count swap - 1000000 / nl "<COMPLETEDIN::>%f ms" printf nl ;
 
 ! line internal unformatted linefeed, to be used in single-line test result messages
