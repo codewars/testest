@@ -18,7 +18,7 @@ IN: your-kata
 in your test code `USE: tools.testest` and structure your tests. Tests are run by executing the `MAIN:` entrypoint, which points to a word with no stack effects. A typical generic test setup looks like:
 ```
 USING: tools.testest your-kata.preloaded ... vocabs used by tests ... ;
-FROM: your-kata => solution ;
+FROM: your-kata => solve ;
 IN: your-kata.tests
 
 : run-tests ( -- )
