@@ -8,9 +8,17 @@ Psalms 17:3
 
 ### General setup
 
-In your test code `USE: tools.testest`then structure your tests. Tests are run by executing the `MAIN:` entrypoint, which points to a word with no stack effects. A typical generic test setup looks like:
+For code testing a solution `solve`:
 ```
-USING: tools.testest ... your vocabs ... ;
+IN: your-kata
+: solve ( ... )
+... your solution ...
+```
+
+in your test code `USE: tools.testest` and structure your tests. Tests are run by executing the `MAIN:` entrypoint, which points to a word with no stack effects. A typical generic test setup looks like:
+```
+USING: tools.testest your-kata.preloaded ... vocabs used by tests ... ;
+FROM: your-kata => solution ;
 IN: your-kata.tests
 
 : run-tests ( -- )
@@ -19,14 +27,10 @@ IN: your-kata.tests
 
 MAIN: run-tests
 ```
-and your solution would look like:
-```
-IN: your-kata
-... your solution ...
-```
+where `run-tests` calls `solve` with different test vectors for each test case.
 
 ### Test cases
-Test cases are partitioned into one or more `describe#{` sections, where each section has one or more test cases grouped under `it#{`. A single test case is run by `<{ ... actual results ... -> ... expected results ... }>` where both sides can contain words that are called to process inputs. A test cases checks if the actual results compare equal (using the `=` word) to the expected results. It passes upon success, and fails upon failure. This is reported in the Codewars runner. Both `describe#{` sections as well as `it#{'` sections report their execution times at the end of a section.
+Test cases are partitioned into one or more `describe#{` sections, where each section has one or more test cases grouped under `it#{`. A single test case is run by `<{ ... actual results ... -> ... expected results ... }>` where both sides can contain words that are called to process inputs and/or outputs. The test case checks if the implicit sequence of actual results on the left of `->` compares equal (using the `=` word) to the sequence of expected results on the right. It passes upon success, and fails upon failure. This is reported in the Codewars runner. Both `describe#{` sections as well as `it#{'` sections report their execution times at the end of a section.
 
 Typical Factor testcode to test a solution `solve ( a b c -- d )` looks like:
 ```
@@ -60,7 +64,7 @@ Typical Factor testcode to test a solution `solve ( a b c -- d )` looks like:
 
 ### Custom pass and fail messages
 
-Default messages are shown when a test passes or fails. These message can customised using `with-passed`, `with-failed`, and `with-passed-failed` combinators, with the following stack effects:
+Default messages are shown when a test passes or fails. These messages can be customised using `with-passed`, `with-failed`, and `with-passed-failed` combinators, with the following stack effects:
 ```
 : with-passed ( passed quot -- )
 : with-failed ( failed quot -- )
@@ -74,7 +78,7 @@ Both `passed` and `failed` are quotations, one of which is called after each tes
 
 The argument to `failed` is an `assert-sequence` error with slots `got` for a sequence of actual results and `expected` for a sequence of expected results. Both the `passed` and `failed` quotations can write messages to the output stream. To print newlines use the `lf` word.
 
-Custom messages can be nested, and are restored outside the scope of the quotation passed to the `with-passed`, `with-failed`, and `with-passed-failed`, combinators.
+Custom messages can be nested, and are restored outside the scope of the quotation passed to the `with-passed`, `with-failed`, and `with-passed-failed` combinators.
 
 ### Custom pass and fail messages example
 
@@ -102,6 +106,8 @@ In some situations solutions compute an inexact result. The `math.margins` vocab
 The latter two have aliases `±` for `[a-e,a+e]` and `±%` for `[a-%,a+%]`.
 
 Reals can be converted in margins for comparison with `>margin` or its alias `>±`. Comparing using `=` with a constructed margin will compare against the margin's boundaries, if the real falls within the boundaries true is returned, else false.
+
+Margin comparisons are not true equivalence relations, but are tolerance relations, as they are reflexive and symmetric, but not necessarily transitive.
 
 ### Inexact value comparison with margins example
 
