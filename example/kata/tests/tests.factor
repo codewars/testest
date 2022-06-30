@@ -1,4 +1,5 @@
-USING: kata.preloaded kata prettyprint tools.testest ;
+USING: kata.preloaded prettyprint tools.testest ;
+FROM: kata => solution ;
 IN: kata.tests
 
 : run-tests ( -- )
