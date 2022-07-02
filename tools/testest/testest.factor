@@ -1,6 +1,6 @@
 ! Copyright 2019-2022 nomennescio
 
-USING: accessors continuations debugger formatting fry io io.styles kernel locals math
+USING: accessors classes continuations debugger formatting fry io io.styles kernel locals math
 namespaces parser prettyprint prettyprint.config quotations sequences system ;
 IN: tools.testest
 
