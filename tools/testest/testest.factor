@@ -9,20 +9,6 @@ IN: tools.testest
 : it#{ ( description -- starttime ) nl "<IT::>%s" printf nl flush nano-count ;
 : }# ( starttime -- ) nano-count swap - 1000000 / nl "<COMPLETEDIN::>%f ms" printf nl ;
 
-! line internal unformatted linefeed, to be used in single-line test result messages
-
-: lf ( -- ) "<:LF:>" write ;
-
-: pprint-unlimited ( obj -- ) [ pprint ] without-limits ;
-
-: seq. ( seq -- )
-  [
-    [ lf pprint-unlimited ]
-    [ drop [ error-in-pprint ] keep write-object ]
-    recover
-  ] each
-;
-
 ! user redefinable test result message quotations
 
 SYMBOL: test-passed.
@@ -50,7 +36,25 @@ SYMBOL: test-failed.
 
 PRIVATE>
 
+DEFER: -> delimiter
+DEFER: }> delimiter
+SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffix! \ (unit-test) suffix! ;
+
 ! customized printing
+
+! line internal unformatted linefeed, to be used in single-line test result messages
+
+: lf ( -- ) "<:LF:>" write ;
+
+: pprint-unlimited ( obj -- ) [ pprint ] without-limits ;
+
+: seq. ( seq -- )
+  [
+    [ lf pprint-unlimited ]
+    [ drop [ error-in-pprint ] keep write-object ]
+    recover
+  ] each
+;
 
 SYMBOL: ERROR:{
 : pprint-error ( error-tuple -- ) [ ERROR:{ ] dip [ class-of ] [ tuple>assoc ] bi \ } (pprint-tuple) ;
@@ -63,7 +67,3 @@ M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
   [ lf "but got :" write got>> seq. ] bi
 ;
-
-DEFER: -> delimiter
-DEFER: }> delimiter
-SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffix! \ (unit-test) suffix! ;
