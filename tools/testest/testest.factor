@@ -1,7 +1,7 @@
 ! Copyright 2019-2022 nomennescio
 
-USING: accessors classes classes.error continuations debugger formatting fry inspector io
-io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
+USING: accessors arrays classes classes.error continuations debugger formatting fry inspector
+io io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
 prettyprint.config prettyprint.custom quotations sequences system ;
 IN: tools.testest
 
@@ -29,8 +29,10 @@ SYMBOL: test-failed.
 : passed# ( -- ) nl "<PASSED::>" write ;
 : failed# ( -- ) nl "<FAILED::>" write ;
 
-:: (unit-test) ( test expected -- )
-  [ { } test with-datastack { } expected with-datastack assert-sequence= passed# passed. nl ]
+: catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
+
+: (unit-test) ( test expected -- )
+  '[ _ _ [ { } swap catch-all ] bi@ not rot and [ drop first rethrow ] when assert-sequence= passed# passed. nl ]
   [ failed# failed. nl ] recover
 ;
 
