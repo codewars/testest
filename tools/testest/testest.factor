@@ -1,7 +1,8 @@
 ! Copyright 2019-2022 nomennescio
 
-USING: accessors continuations debugger formatting fry io io.styles kernel locals math
-namespaces parser prettyprint prettyprint.config quotations sequences system ;
+USING: accessors classes classes.error continuations debugger formatting fry inspector io
+io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
+prettyprint.config prettyprint.custom quotations sequences system ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
@@ -48,6 +49,15 @@ SYMBOL: test-failed.
 ;
 
 PRIVATE>
+
+! customized printing
+
+SYMBOL: ERROR:{
+: pprint-error ( error-tuple -- ) [ ERROR:{ ] dip [ class-of ] [ tuple>assoc ] bi \ } (pprint-tuple) ;
+
+! print errors differently from tuples
+M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if ;
+M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
 
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
