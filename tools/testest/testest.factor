@@ -30,12 +30,13 @@ SYMBOL: test-failed.
 
 : passed# ( -- ) nl "<PASSED::>" write ;
 : failed# ( -- ) nl "<FAILED::>" write ;
+: error# ( -- ) nl "<ERROR::>" write ;
 
 : catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
 
-: (unit-test) ( test expected -- )
-  '[ _ _ [ { } swap catch-all ] bi@ not rot and [ drop first rethrow ] when assert-sequence= passed# passed. nl ]
-  [ failed# failed. nl ] recover
+: (unit-test) ( test-quot expected-quot -- )
+  [ { } swap catch-all ] bi@ not rot and [ drop first failed# [ print-error ] with-message nl ] 
+  [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
 ;
 
 PRIVATE>
