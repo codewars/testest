@@ -23,7 +23,7 @@ SYMBOL: test-failed.
 
 <PRIVATE
 
-: with-message ( quot -- message ) with-string-writer "\n" "<:LF:>" replace write ; inline
+: with-message ( quot -- message ) with-string-writer unclip-last [ "\n" "<:LF:>" replace ] dip suffix write ; inline
 
 : passed. ( -- ) [ test-passed. get call( -- ) ] with-message ; inline
 : failed. ( error -- ) [ test-failed. get call( error -- ) ] with-message ; inline
