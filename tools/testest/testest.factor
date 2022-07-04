@@ -23,8 +23,10 @@ SYMBOL: test-failed.
 
 <PRIVATE
 
-: passed. ( -- ) test-passed. get call( -- ) ; inline
-: failed. ( error -- ) test-failed. get call( error -- ) ; inline
+: with-message ( quot -- message ) with-string-writer "\n" "<:LF:>" replace write ; inline
+
+: passed. ( -- ) [ test-passed. get call( -- ) ] with-message ; inline
+: failed. ( error -- ) [ test-failed. get call( error -- ) ] with-message ; inline
 
 : passed# ( -- ) nl "<PASSED::>" write ;
 : failed# ( -- ) nl "<FAILED::>" write ;
