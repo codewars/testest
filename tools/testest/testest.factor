@@ -35,7 +35,7 @@ SYMBOL: test-failed.
 : catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
 
 : (unit-test) ( test-quot expected-quot -- )
-  [ { } swap catch-all ] bi@ not rot and [ drop first failed# [ print-error ] with-message nl ] 
+  [ { } swap catch-all ] bi@ not rot and [ drop first error# [ print-error ] with-message nl ] 
   [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
 ;
 
