@@ -1,8 +1,8 @@
 ! Copyright 2019-2022 nomennescio
 
 USING: accessors arrays classes classes.error continuations debugger formatting fry inspector
-io io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
-prettyprint.config prettyprint.custom quotations sequences system ;
+io io.streams.string io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
+prettyprint.config prettyprint.custom quotations sequences splitting system ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
