@@ -1,8 +1,8 @@
 ! Copyright 2019-2022 nomennescio
 
 USING: accessors arrays classes classes.error continuations debugger formatting fry inspector
-io io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
-prettyprint.config prettyprint.custom quotations sequences system ;
+io io.streams.string io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
+prettyprint.config prettyprint.custom quotations sequences splitting system ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
@@ -23,8 +23,10 @@ SYMBOL: test-failed.
 
 <PRIVATE
 
-: passed. ( -- ) test-passed. get call( -- ) ; inline
-: failed. ( error -- ) test-failed. get call( error -- ) ; inline
+: with-message ( quot -- message ) with-string-writer "\n" "<:LF:>" replace write ; inline
+
+: passed. ( -- ) [ test-passed. get call( -- ) ] with-message ; inline
+: failed. ( error -- ) [ test-failed. get call( error -- ) ] with-message ; inline
 
 : passed# ( -- ) nl "<PASSED::>" write ;
 : failed# ( -- ) nl "<FAILED::>" write ;
