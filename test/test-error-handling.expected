@@ -1,0 +1,28 @@
+
+<DESCRIBE::>System and custom errors tests
+
+<IT::>Unexpected system error in user code
+
+<ERROR::>ERROR:{ division-by-zero { x 1 } }
+
+<COMPLETEDIN::>0.315601 ms
+
+<IT::>Unexpected custom error in user code
+
+<ERROR::>ERROR:{ custom-error { error-message "thrown custom error" } {...
+
+<COMPLETEDIN::>0.091600 ms
+
+<IT::>Expected custom error
+
+<PASSED::>Test Passed
+
+<COMPLETEDIN::>0.059200 ms
+
+<IT::>Missing expected custom error
+
+<FAILED::>Test Failed : Expected :<:LF:>  ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>But got :<:LF:>  1
+
+<COMPLETEDIN::>0.218201 ms
+
+<COMPLETEDIN::>0.860902 ms
