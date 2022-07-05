@@ -3,13 +3,13 @@
 
 <IT::>single test
 
-<FAILED::>Test Failed : Expected :<:LF:>0<:LF:>but got :<:LF:>0<:LF:>0
+<FAILED::>Test Failed : Expected :<:LF:>  0<:LF:>but got :<:LF:>  0<:LF:>  0
 
 <COMPLETEDIN::>0.126526 ms
 
 <IT::>double test
 
-<FAILED::>Test Failed : Expected :<:LF:>0<:LF:>but got :<:LF:>0<:LF:>0
+<FAILED::>Test Failed : Expected :<:LF:>  0<:LF:>but got :<:LF:>  0<:LF:>  0
 
 <PASSED::>Test Passed
 
@@ -17,9 +17,9 @@
 
 <IT::>double fail test
 
-<FAILED::>Test Failed : Expected :<:LF:>0<:LF:>but got :<:LF:>0<:LF:>0
+<FAILED::>Test Failed : Expected :<:LF:>  0<:LF:>but got :<:LF:>  0<:LF:>  0
 
-<FAILED::>Test Failed : Expected :<:LF:>0<:LF:>0<:LF:>0<:LF:>but got :<:LF:>0
+<FAILED::>Test Failed : Expected :<:LF:>  0<:LF:>  0<:LF:>  0<:LF:>but got :<:LF:>  0
 
 <COMPLETEDIN::>0.030305 ms
 

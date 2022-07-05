@@ -55,7 +55,7 @@ SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffi
 
 : seq. ( seq -- )
   [
-    [ nl pprint-unlimited ]
+    [ nl bl bl pprint-unlimited ]
     [ drop [ error-in-pprint ] keep write-object ]
     recover
   ] each

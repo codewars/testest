@@ -9,7 +9,7 @@
 
 <IT::>Mismatch
 
-<FAILED::>Test Failed : Expected :<:LF:>4<:LF:>5<:LF:>6<:LF:>7<:LF:>but got :<:LF:>0<:LF:>1<:LF:>2<:LF:>3
+<FAILED::>Test Failed : Expected :<:LF:>  4<:LF:>  5<:LF:>  6<:LF:>  7<:LF:>but got :<:LF:>  0<:LF:>  1<:LF:>  2<:LF:>  3
 
 <COMPLETEDIN::>0.126585 ms
 
