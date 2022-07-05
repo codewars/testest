@@ -27,9 +27,9 @@
 
 <IT::>failing compares
 
-<FAILED::>Expected :<:LF:>  "Hello Worlds!"<:LF:>but got :<:LF:>  "Hello World!"
+<FAILED::>Expected :<:LF:>  "Hello Worlds!"<:LF:>But got :<:LF:>  "Hello World!"
 
-<FAILED::>Expected :<:LF:>  "Hello Worlds! "<:LF:>but got :<:LF:>  "Hello Worlds!"
+<FAILED::>Expected :<:LF:>  "Hello Worlds! "<:LF:>But got :<:LF:>  "Hello Worlds!"
 
 <COMPLETEDIN::>0.131308 ms
 
@@ -43,9 +43,9 @@
 
 <IT::>failing compares
 
-<FAILED::>Test Failed : Expected :<:LF:>  "Hello Worlds!"<:LF:>but got :<:LF:>  "Hello World!"
+<FAILED::>Test Failed : Expected :<:LF:>  "Hello Worlds!"<:LF:>But got :<:LF:>  "Hello World!"
 
-<FAILED::>Test Failed : Expected :<:LF:>  "Hello Worlds! "<:LF:>but got :<:LF:>  "Hello Worlds!"
+<FAILED::>Test Failed : Expected :<:LF:>  "Hello Worlds! "<:LF:>But got :<:LF:>  "Hello Worlds!"
 
 <COMPLETEDIN::>0.060291 ms
 
@@ -63,9 +63,9 @@
 
 <IT::>failing compares
 
-<FAILED::>Test failed A Expected :<:LF:>  "Hello Worlds!"<:LF:>but got :<:LF:>  "Hello World!"
+<FAILED::>Test failed A Expected :<:LF:>  "Hello Worlds!"<:LF:>But got :<:LF:>  "Hello World!"
 
-<FAILED::>Test failed A Expected :<:LF:>  "Hello Worlds! "<:LF:>but got :<:LF:>  "Hello Worlds!"
+<FAILED::>Test failed A Expected :<:LF:>  "Hello Worlds! "<:LF:>But got :<:LF:>  "Hello Worlds!"
 
 <COMPLETEDIN::>0.044357 ms
 
