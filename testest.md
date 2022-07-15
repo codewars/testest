@@ -76,7 +76,7 @@ Both `passed` and `failed` are quotations, one of which is called after each tes
 : failed ( error -- )
 ```
 
-The argument to `failed` is an `assert-sequence` error with slots `got` for a sequence of actual results and `expected` for a sequence of expected results. Both the `passed` and `failed` quotations can write messages to the output stream. To print newlines use the `lf` word.
+The argument to `failed` is an `assert-sequence` error with slots `got` for a sequence of actual results and `expected` for a sequence of expected results. Both the `passed` and `failed` quotations can write messages to the output stream. Newlines are converted to platform specific line separators.
 
 Custom messages can be nested, and are restored outside the scope of the quotation passed to the `with-passed`, `with-failed`, and `with-passed-failed` combinators.
 
@@ -86,13 +86,40 @@ Custom messages can be nested, and are restored outside the scope of the quotati
 : run-tests ( -- )
   ...
   [ "Just passed" ] [
-    [ [ "Expected: " write expected>> seq. ] [ lf "Actual: " write got>> seq. ] bi ] [
+    [ [ "Expected: " write expected>> . ] [ nl "Actual: " write got>> . ] bi ] [
       <{ 1 4 add -> 5 }>
       <{ 2 3 add -> 5 }>
     ] with-failed
   ] with-passed
   ...
 ;
+```
+
+### Handling of errors
+
+Factor can throw errors, and testcode may need to test that. As errors are first-class objects, the testest library supports such testing in an intuitive way. If test code on the right side of the arrow `->` throws an error, the left side is expected to throw that same error, if it does, the test passes, if it doesn't the test fails. On the other hand, if the code on the right does not throw an error, any error thrown by the left side is considered as a real error and reported as such. To help analysing thrown errors, all `ERROR:`s are printed in a special format by the default failure handler.
+
+### Handling of errors Example
+
+```
+ERROR: custom-error error-message integer-argument ;
+
+: run-tests ( -- )
+
+"System and custom errors tests" describe#{
+  "Unexpected divide by 0 error in user code" it#{
+     <{ 1 0 / -> 1 }>
+  }#
+  "Unexpected custom error in user code" it#{
+     <{ "thrown custom error" 1 custom-error -> 1 }>
+  }#
+  "Expected custom error" it#{
+     <{ "thrown custom error" 1 custom-error -> "thrown custom error" 1 custom-error }>
+  }#
+  "Missing expected custom error" it#{
+     <{ 1 -> "thrown custom error" 1 custom-error }>
+  }#
+}#
 ```
 
 ### Inexact value comparisons with margins
@@ -128,13 +155,6 @@ The second examples calculates pi to a certain precision, converts it to margin,
 Some users requested features to be added to the library, which although useful, might not be common enough to warrant their inclusion yet.
 
 I list these usecases here, with utility words which implement the feature
-
-##### Codewars newlines
-
-Strings to be printed on the Codewars code runner, need to use `lf` to print newlines. The `cw>` word converts embedded newlines into newlines used by the runner
-```
-: >cw ( string -- codewars-string )  "\n" "<:LF:>" replace ;
-```
 
 ##### Minimum margin for relative margins
 
