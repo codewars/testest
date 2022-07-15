@@ -55,7 +55,7 @@ SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffi
 
 : seq. ( seq -- )
   [
-    [ nl bl bl pprint-unlimited ]
+    [ nl pprint-unlimited ]
     [ drop [ error-in-pprint ] keep write-object ]
     recover
   ] each
@@ -70,5 +70,5 @@ M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
 
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
-  [ nl "But got :" write got>> seq. ] bi
+  [ nl "but got :" write got>> seq. ] bi
 ;

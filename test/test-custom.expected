@@ -27,9 +27,9 @@
 
 <IT::>failing compares
 
-<FAILED::>Actually expected :<:LF:>  "Hello Worlds!"<:LF:>but instead got :<:LF:>  "Hello World!"
+<FAILED::>Actually expected :<:LF:>"Hello Worlds!"<:LF:>but instead got :<:LF:>"Hello World!"
 
-<FAILED::>Actually expected :<:LF:>  "Hello Worlds! "<:LF:>but instead got :<:LF:>  "Hello Worlds!"
+<FAILED::>Actually expected :<:LF:>"Hello Worlds! "<:LF:>but instead got :<:LF:>"Hello Worlds!"
 
 <COMPLETEDIN::>0.162660 ms
 
@@ -43,9 +43,9 @@
 
 <IT::>failing compares
 
-<FAILED::>Test Failed : Actually expected :<:LF:>  "Hello Worlds!"<:LF:>but instead got :<:LF:>  "Hello World!"
+<FAILED::>Test Failed : Actually expected :<:LF:>"Hello Worlds!"<:LF:>but instead got :<:LF:>"Hello World!"
 
-<FAILED::>Test Failed : Actually expected :<:LF:>  "Hello Worlds! "<:LF:>but instead got :<:LF:>  "Hello Worlds!"
+<FAILED::>Test Failed : Actually expected :<:LF:>"Hello Worlds! "<:LF:>but instead got :<:LF:>"Hello Worlds!"
 
 <COMPLETEDIN::>0.055392 ms
 

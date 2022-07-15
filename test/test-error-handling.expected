@@ -5,24 +5,24 @@
 
 <ERROR::>ERROR:{ division-by-zero { x 1 } }
 
-<COMPLETEDIN::>0.315601 ms
+<COMPLETEDIN::>0.382253 ms
 
 <IT::>Unexpected custom error in user code
 
 <ERROR::>ERROR:{ custom-error { error-message "thrown custom error" } {...
 
-<COMPLETEDIN::>0.091600 ms
+<COMPLETEDIN::>0.110253 ms
 
 <IT::>Expected custom error
 
 <PASSED::>Test Passed
 
-<COMPLETEDIN::>0.059200 ms
+<COMPLETEDIN::>0.089989 ms
 
 <IT::>Missing expected custom error
 
-<FAILED::>Test Failed : Expected :<:LF:>  ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>But got :<:LF:>  1
+<FAILED::>Test Failed : Expected :<:LF:>ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>1
 
-<COMPLETEDIN::>0.218201 ms
+<COMPLETEDIN::>0.239820 ms
 
-<COMPLETEDIN::>0.860902 ms
+<COMPLETEDIN::>1.043601 ms
