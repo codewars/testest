@@ -47,9 +47,10 @@ SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffi
 
 ! customized printing
 
-! line internal unformatted linefeed, to be used in single-line test result messages
-
+! deprecated
 : lf ( -- ) "<:LF:>" write ;
+
+<PRIVATE
 
 : pprint-unlimited ( obj -- ) [ pprint ] without-limits ;
 
@@ -61,8 +62,6 @@ SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffi
   ] each
 ;
 
-<PRIVATE
-
 SYMBOL: ERROR:{
 : pprint-error ( error-tuple -- ) [ ERROR:{ ] dip [ class-of ] [ tuple>assoc ] bi \ } (pprint-tuple) ;
 
@@ -70,9 +69,9 @@ SYMBOL: ERROR:{
 M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if ;
 M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
 
-PRIVATE>
-
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
   [ nl "but got :" write got>> seq. ] bi
 ;
+
+PRIVATE>
