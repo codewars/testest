@@ -7,7 +7,7 @@
 
 <PASSED::>Just passed
 
-<COMPLETEDIN::>0.129834 ms
+<COMPLETEDIN::>0.140822 ms
 
 <IT::>failing compares
 
@@ -15,7 +15,7 @@
 
 <FAILED::>Just failed
 
-<COMPLETEDIN::>0.076824 ms
+<COMPLETEDIN::>0.068695 ms
 
 <IT::>short strings
 
@@ -23,15 +23,17 @@
 
 <PASSED::>Test passed
 
-<COMPLETEDIN::>0.025016 ms
+<COMPLETEDIN::>0.026218 ms
 
 <IT::>failing compares
 
-<FAILED::>Actually expected :<:LF:>"Hello Worlds!"<:LF:>but instead got :<:LF:>"Hello World!"
+<FAILED::>Actually expected :{ "Hello Worlds!" }<:LF:><:LF:>but instead got :{ "Hello World!" }
 
-<FAILED::>Actually expected :<:LF:>"Hello Worlds! "<:LF:>but instead got :<:LF:>"Hello Worlds!"
 
-<COMPLETEDIN::>0.162660 ms
+<FAILED::>Actually expected :{ "Hello Worlds! " }<:LF:><:LF:>but instead got :{ "Hello Worlds!" }
+
+
+<COMPLETEDIN::>0.336267 ms
 
 <IT::>short strings
 
@@ -39,14 +41,16 @@
 
 <PASSED::>Test Passed
 
-<COMPLETEDIN::>0.026153 ms
+<COMPLETEDIN::>0.047432 ms
 
 <IT::>failing compares
 
-<FAILED::>Test Failed : Actually expected :<:LF:>"Hello Worlds!"<:LF:>but instead got :<:LF:>"Hello World!"
+<FAILED::>Test Failed : Actually expected :{ "Hello Worlds!" }<:LF:><:LF:>but instead got :{ "Hello World!" }
 
-<FAILED::>Test Failed : Actually expected :<:LF:>"Hello Worlds! "<:LF:>but instead got :<:LF:>"Hello Worlds!"
 
-<COMPLETEDIN::>0.055392 ms
+<FAILED::>Test Failed : Actually expected :{ "Hello Worlds! " }<:LF:><:LF:>but instead got :{ "Hello Worlds!" }
 
-<COMPLETEDIN::>0.726864 ms
+
+<COMPLETEDIN::>0.086214 ms
+
+<COMPLETEDIN::>0.922141 ms
