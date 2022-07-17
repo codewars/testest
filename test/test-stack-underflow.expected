@@ -3,39 +3,39 @@
 
 <IT::>single test
 
-<ERROR::>Data stack underflow
+<ERROR::>Thrown: Data stack underflow
 
 
-<COMPLETEDIN::>0.052173 ms
-
-<IT::>double test
-
-<ERROR::>Data stack underflow
-
-
-<ERROR::>Data stack underflow
-
-
-<COMPLETEDIN::>0.020681 ms
+<COMPLETEDIN::>0.143086 ms
 
 <IT::>double test
 
-<ERROR::>Data stack underflow
+<ERROR::>Thrown: Data stack underflow
 
 
-<ERROR::>Data stack underflow
+<ERROR::>Thrown: Data stack underflow
 
 
-<COMPLETEDIN::>0.013233 ms
+<COMPLETEDIN::>0.019864 ms
 
 <IT::>double test
 
-<ERROR::>Data stack underflow
+<ERROR::>Thrown: Data stack underflow
 
 
-<ERROR::>Data stack underflow
+<ERROR::>Thrown: Data stack underflow
 
 
-<COMPLETEDIN::>0.012404 ms
+<COMPLETEDIN::>0.015669 ms
 
-<COMPLETEDIN::>0.314743 ms
+<IT::>double test
+
+<ERROR::>Thrown: Data stack underflow
+
+
+<ERROR::>Thrown: Data stack underflow
+
+
+<COMPLETEDIN::>0.015315 ms
+
+<COMPLETEDIN::>0.341698 ms

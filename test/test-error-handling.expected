@@ -3,32 +3,32 @@
 
 <IT::>Unexpected system error in user code
 
-<ERROR::>Thrown ERROR:{ division-by-zero { x 1 } }
+<ERROR::>Thrown: ERROR:{ division-by-zero { x 1 } }
 
-<COMPLETEDIN::>0.219500 ms
+<COMPLETEDIN::>0.234216 ms
 
 <IT::>Unexpected custom error in user code
 
-<ERROR::>Thrown ERROR:{ custom-error { error-message "thrown custom error" } {...
+<ERROR::>Thrown: ERROR:{ custom-error { error-message "thrown custom error" } {...
 
-<COMPLETEDIN::>0.151855 ms
+<COMPLETEDIN::>0.135980 ms
 
 <IT::>Expected custom error
 
 <PASSED::>Test Passed
 
-<COMPLETEDIN::>0.079046 ms
+<COMPLETEDIN::>0.066256 ms
 
 <IT::>Missing expected custom error
 
-<FAILED::>Test Failed : Expected :<:LF:>THROWN ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>1
+<FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>1
 
-<COMPLETEDIN::>0.281750 ms
+<COMPLETEDIN::>0.167460 ms
 
 <IT::>Missing expected thrown custom error
 
-<FAILED::>Test Failed : Expected :<:LF:>THROWN ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}
+<FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}
 
-<COMPLETEDIN::>0.063074 ms
+<COMPLETEDIN::>0.061402 ms
 
-<COMPLETEDIN::>0.959255 ms
+<COMPLETEDIN::>0.819462 ms
