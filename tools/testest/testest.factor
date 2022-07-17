@@ -32,6 +32,8 @@ SYMBOL: test-failed.
 : failed# ( -- ) nl "<FAILED::>" write ;
 : error# ( -- ) nl "<ERROR::>" write ;
 
+ERROR: thrown error ;
+
 : catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
 
 : (unit-test) ( test-quot expected-quot -- )
@@ -68,6 +70,10 @@ SYMBOL: ERROR:{
 ! print errors differently from tuples
 M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if ;
 M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
+
+SYMBOL: THROWN
+M: thrown pprint* \ THROWN pprint-word error>> pprint-error ;
+M: thrown error. "Thrown " write error>> error. ;
 
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
