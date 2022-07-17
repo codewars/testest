@@ -36,6 +36,8 @@ ERROR: thrown error ;
 
 : catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
 
+: unexpected-error? ( obj1 obj2 -- ? ) first thrown? not swap first thrown? and ;
+
 : (unit-test) ( test-quot expected-quot -- )
   [ { } swap catch-all ] bi@ not rot and [ drop first error# [ print-error ] with-message nl ] 
   [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
