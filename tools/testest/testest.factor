@@ -34,12 +34,13 @@ SYMBOL: test-failed.
 
 ERROR: thrown error ;
 
-: catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
+: catch-all ( stack quot -- stack' ) '[ _ _ with-datastack ] [ \ thrown boa 1array ] recover ; inline
 
 : unexpected-error? ( obj1 obj2 -- ? ) first thrown? not swap first thrown? and ;
 
 : (unit-test) ( test-quot expected-quot -- )
-  [ { } swap catch-all ] bi@ not rot and [ drop first error# [ print-error ] with-message nl ] 
+  [ { } swap catch-all ] bi@ 2dup unexpected-error?
+  [ drop first error# [ print-error ] with-message nl ]
   [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
 ;
 
