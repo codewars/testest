@@ -23,7 +23,7 @@ SYMBOL: test-failed.
 
 <PRIVATE
 
-: with-message ( quot -- message ) with-string-writer unclip-last [ "\n" "<:LF:>" replace ] dip suffix write ; inline
+: with-message ( quot -- ) with-string-writer unclip-last [ "\n" "<:LF:>" replace ] dip suffix write ; inline
 
 : passed. ( -- ) [ test-passed. get call( -- ) ] with-message ; inline
 : failed. ( error -- ) [ test-failed. get call( error -- ) ] with-message ; inline
@@ -32,10 +32,15 @@ SYMBOL: test-failed.
 : failed# ( -- ) nl "<FAILED::>" write ;
 : error# ( -- ) nl "<ERROR::>" write ;
 
-: catch-all ( stack quot -- stack' throwed? ) '[ _ _ with-datastack f ] [ 1array t ] recover ; inline
+ERROR: thrown error ;
+
+: catch-all ( stack quot -- stack' ) '[ _ _ with-datastack ] [ \ thrown boa 1array ] recover ; inline
+
+: unexpected-error? ( obj1 obj2 -- ? ) ?first thrown? not swap ?first thrown? and ;
 
 : (unit-test) ( test-quot expected-quot -- )
-  [ { } swap catch-all ] bi@ not rot and [ drop first error# [ print-error ] with-message nl ] 
+  [ { } swap catch-all ] bi@ 2dup unexpected-error?
+  [ drop first error# [ print-error ] with-message nl ]
   [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
 ;
 
@@ -66,8 +71,13 @@ SYMBOL: ERROR:{
 : pprint-error ( error-tuple -- ) [ ERROR:{ ] dip [ class-of ] [ tuple>assoc ] bi \ } (pprint-tuple) ;
 
 ! print errors differently from tuples
+
 M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if ;
 M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
+
+SYMBOL: THROWN:
+M: thrown pprint* \ THROWN: pprint-word error>> pprint* ;
+M: thrown error. "Thrown: " write error>> error. ;
 
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
