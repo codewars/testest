@@ -76,7 +76,7 @@ M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if 
 M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
 
 SYMBOL: THROWN:
-M: thrown pprint* \ THROWN: pprint-word error>> pprint-error ;
+M: thrown pprint* \ THROWN: pprint-word error>> pprint* ;
 M: thrown error. "Thrown: " write error>> error. ;
 
 M: assert-sequence error.
