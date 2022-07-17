@@ -81,7 +81,7 @@ M: thrown error. "Thrown: " write error>> error. ;
 
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
-  [ nl "but got :" write got>> seq. ] bi
+  [ nl "But got :" write got>> seq. ] bi
 ;
 
 PRIVATE>
