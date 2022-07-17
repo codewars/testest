@@ -68,6 +68,7 @@ SYMBOL: ERROR:{
 : pprint-error ( error-tuple -- ) [ ERROR:{ ] dip [ class-of ] [ tuple>assoc ] bi \ } (pprint-tuple) ;
 
 ! print errors differently from tuples
+
 M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if ;
 M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
 
