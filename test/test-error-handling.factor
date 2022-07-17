@@ -1,9 +1,10 @@
 ! Copyright 2022 nomennescio
 
-USING: tools.testest math ;
+USING: tools.testest kernel math ;
 IN: tests
 
 ERROR: custom-error error-message integer-argument ;
+C: <custom-error> custom-error
 
 : run-tests ( -- )
 
@@ -19,6 +20,9 @@ ERROR: custom-error error-message integer-argument ;
   }#
   "Missing expected custom error" it#{
      <{ 1 -> "thrown custom error" 1 custom-error }>
+  }#
+  "Missing expected thrown custom error" it#{
+     <{ "thrown custom error" 1 <custom-error> -> "thrown custom error" 1 custom-error }>
   }#
 }#
 ;
