@@ -5,30 +5,36 @@
 
 <ERROR::>Thrown: ERROR:{ division-by-zero { x 1 } }
 
-<COMPLETEDIN::>0.234216 ms
+<COMPLETEDIN::>0.274156 ms
 
 <IT::>Unexpected custom error in user code
 
 <ERROR::>Thrown: ERROR:{ custom-error { error-message "thrown custom error" } {...
 
-<COMPLETEDIN::>0.135980 ms
+<COMPLETEDIN::>0.179815 ms
 
 <IT::>Expected custom error
 
 <PASSED::>Test Passed
 
-<COMPLETEDIN::>0.066256 ms
+<COMPLETEDIN::>0.059046 ms
 
 <IT::>Missing expected custom error
 
 <FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>1
 
-<COMPLETEDIN::>0.167460 ms
+<COMPLETEDIN::>0.166183 ms
+
+<IT::>Missing expected thrown error
+
+<FAILED::>Test Failed : Expected :<:LF:>THROWN: "thrown error"<:LF:>but got :<:LF:>"thrown error"
+
+<COMPLETEDIN::>0.028068 ms
 
 <IT::>Missing expected thrown custom error
 
 <FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}
 
-<COMPLETEDIN::>0.061402 ms
+<COMPLETEDIN::>0.056286 ms
 
-<COMPLETEDIN::>0.819462 ms
+<COMPLETEDIN::>0.952354 ms

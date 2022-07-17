@@ -21,6 +21,9 @@ C: <custom-error> custom-error
   "Missing expected custom error" it#{
      <{ 1 -> "thrown custom error" 1 custom-error }>
   }#
+  "Missing expected thrown error" it#{
+     <{ "thrown error" -> "thrown error" throw }>
+  }#
   "Missing expected thrown custom error" it#{
      <{ "thrown custom error" 1 <custom-error> -> "thrown custom error" 1 custom-error }>
   }#
