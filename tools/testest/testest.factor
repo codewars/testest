@@ -37,7 +37,7 @@ ERROR: thrown error ;
 
 : catch-all ( stack quot -- stack' ) '[ _ _ with-datastack ] [ \ thrown boa 1array ] recover ; inline
 
-: unexpected-error? ( got expected -- ? ) ?first thrown? not swap ?first thrown? and ;
+: unexpected-error? ( got expected -- ? ) [ ?first thrown? ] bi@ not and ;
 
 : (unit-test) ( test-quot expected-quot -- )
   [ { } swap catch-all ] bi@ 2dup unexpected-error? [ drop first error# (error.) ]
