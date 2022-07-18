@@ -41,8 +41,8 @@ ERROR: thrown error ;
 
 : (unit-test) ( test-quot expected-quot -- )
   [ { } swap catch-all ] bi@ 2dup unexpected-error?
-  [ drop first error# (error.) nl ]
-  [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
+  [ drop first error# (error.) ]
+  [ '[ _ _ assert-sequence= passed# passed. ] [ failed# failed. ] recover ] if nl
 ;
 
 PRIVATE>
