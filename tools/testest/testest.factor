@@ -27,6 +27,7 @@ SYMBOL: test-failed.
 
 : passed. ( -- ) [ test-passed. get call( -- ) ] with-message ; inline
 : failed. ( error -- ) [ test-failed. get call( error -- ) ] with-message ; inline
+: (error.) ( error -- ) [ print-error ] with-message ; inline
 
 : passed# ( -- ) nl "<PASSED::>" write ;
 : failed# ( -- ) nl "<FAILED::>" write ;
@@ -40,7 +41,7 @@ ERROR: thrown error ;
 
 : (unit-test) ( test-quot expected-quot -- )
   [ { } swap catch-all ] bi@ 2dup unexpected-error?
-  [ drop first error# [ print-error ] with-message nl ]
+  [ drop first error# (error.) nl ]
   [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
 ;
 
