@@ -7,7 +7,7 @@
 
 <PASSED::>Just passed
 
-<COMPLETEDIN::>0.066171 ms
+<COMPLETEDIN::>0.109413 ms
 
 <IT::>failing compares
 
@@ -15,7 +15,7 @@
 
 <FAILED::>Just failed
 
-<COMPLETEDIN::>0.057857 ms
+<COMPLETEDIN::>0.061099 ms
 
 <IT::>short strings
 
@@ -23,15 +23,15 @@
 
 <PASSED::>Test passed
 
-<COMPLETEDIN::>0.018855 ms
+<COMPLETEDIN::>0.022957 ms
 
 <IT::>failing compares
 
-<FAILED::>Expected :<:LF:>"Hello Worlds!"<:LF:>but got :<:LF:>"Hello World!"
+<FAILED::>Expected :<:LF:>"Hello Worlds!"<:LF:>But got :<:LF:>"Hello World!"
 
-<FAILED::>Expected :<:LF:>"Hello Worlds! "<:LF:>but got :<:LF:>"Hello Worlds!"
+<FAILED::>Expected :<:LF:>"Hello Worlds! "<:LF:>But got :<:LF:>"Hello Worlds!"
 
-<COMPLETEDIN::>0.131308 ms
+<COMPLETEDIN::>0.217590 ms
 
 <IT::>short strings
 
@@ -39,17 +39,17 @@
 
 <PASSED::>Test Passed
 
-<COMPLETEDIN::>0.019944 ms
+<COMPLETEDIN::>0.035451 ms
 
 <IT::>failing compares
 
-<FAILED::>Test Failed : Expected :<:LF:>"Hello Worlds!"<:LF:>but got :<:LF:>"Hello World!"
+<FAILED::>Test Failed : Expected :<:LF:>"Hello Worlds!"<:LF:>But got :<:LF:>"Hello World!"
 
-<FAILED::>Test Failed : Expected :<:LF:>"Hello Worlds! "<:LF:>but got :<:LF:>"Hello Worlds!"
+<FAILED::>Test Failed : Expected :<:LF:>"Hello Worlds! "<:LF:>But got :<:LF:>"Hello Worlds!"
 
-<COMPLETEDIN::>0.060291 ms
+<COMPLETEDIN::>0.059324 ms
 
-<COMPLETEDIN::>0.540606 ms
+<COMPLETEDIN::>0.711160 ms
 
 <DESCRIBE::>nested custom messages
 
@@ -59,15 +59,15 @@
 
 <PASSED::>Passed 2
 
-<COMPLETEDIN::>0.031492 ms
+<COMPLETEDIN::>0.037563 ms
 
 <IT::>failing compares
 
-<FAILED::>Test failed A Expected :<:LF:>"Hello Worlds!"<:LF:>but got :<:LF:>"Hello World!"
+<FAILED::>Test failed A Expected :<:LF:>"Hello Worlds!"<:LF:>But got :<:LF:>"Hello World!"
 
-<FAILED::>Test failed A Expected :<:LF:>"Hello Worlds! "<:LF:>but got :<:LF:>"Hello Worlds!"
+<FAILED::>Test failed A Expected :<:LF:>"Hello Worlds! "<:LF:>But got :<:LF:>"Hello Worlds!"
 
-<COMPLETEDIN::>0.044357 ms
+<COMPLETEDIN::>0.055741 ms
 
 <IT::>short strings
 
@@ -75,7 +75,7 @@
 
 <PASSED::>Test passed B
 
-<COMPLETEDIN::>0.018118 ms
+<COMPLETEDIN::>0.024275 ms
 
 <IT::>failing compares
 
@@ -83,6 +83,6 @@
 
 <FAILED::>Failed 4
 
-<COMPLETEDIN::>0.035839 ms
+<COMPLETEDIN::>0.059719 ms
 
-<COMPLETEDIN::>0.151897 ms
+<COMPLETEDIN::>0.211430 ms

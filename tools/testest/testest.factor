@@ -27,6 +27,7 @@ SYMBOL: test-failed.
 
 : passed. ( -- ) [ test-passed. get call( -- ) ] with-message ; inline
 : failed. ( error -- ) [ test-failed. get call( error -- ) ] with-message ; inline
+: (error.) ( error -- ) [ print-error ] with-message ; inline
 
 : passed# ( -- ) nl "<PASSED::>" write ;
 : failed# ( -- ) nl "<FAILED::>" write ;
@@ -36,12 +37,11 @@ ERROR: thrown error ;
 
 : catch-all ( stack quot -- stack' ) '[ _ _ with-datastack ] [ \ thrown boa 1array ] recover ; inline
 
-: unexpected-error? ( obj1 obj2 -- ? ) ?first thrown? not swap ?first thrown? and ;
+: unexpected-error? ( got expected -- ? ) ?first thrown? not swap ?first thrown? and ;
 
 : (unit-test) ( test-quot expected-quot -- )
-  [ { } swap catch-all ] bi@ 2dup unexpected-error?
-  [ drop first error# [ print-error ] with-message nl ]
-  [ '[ _ _ assert-sequence= passed# passed. nl ] [ failed# failed. nl ] recover ] if
+  [ { } swap catch-all ] bi@ 2dup unexpected-error? [ drop first error# (error.) ]
+  [ '[ _ _ assert-sequence= passed# passed. ] [ failed# failed. ] recover ] if nl
 ;
 
 PRIVATE>
@@ -76,12 +76,12 @@ M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if 
 M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
 
 SYMBOL: THROWN:
-M: thrown pprint* \ THROWN: pprint-word error>> pprint* ;
+M: thrown pprint* THROWN: pprint-word error>> pprint* ;
 M: thrown error. "Thrown: " write error>> error. ;
 
 M: assert-sequence error.
   [ "Expected :" write expected>> seq. ]
-  [ nl "but got :" write got>> seq. ] bi
+  [ nl "But got :" write got>> seq. ] bi
 ;
 
 PRIVATE>

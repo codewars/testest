@@ -5,36 +5,36 @@
 
 <ERROR::>Thrown: ERROR:{ division-by-zero { x 1 } }
 
-<COMPLETEDIN::>0.274156 ms
+<COMPLETEDIN::>0.293243 ms
 
 <IT::>Unexpected custom error in user code
 
 <ERROR::>Thrown: ERROR:{ custom-error { error-message "thrown custom error" } {...
 
-<COMPLETEDIN::>0.179815 ms
+<COMPLETEDIN::>0.117949 ms
 
 <IT::>Expected custom error
 
 <PASSED::>Test Passed
 
-<COMPLETEDIN::>0.059046 ms
+<COMPLETEDIN::>0.077905 ms
 
 <IT::>Missing expected custom error
 
-<FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>1
+<FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>But got :<:LF:>1
 
-<COMPLETEDIN::>0.166183 ms
+<COMPLETEDIN::>0.216107 ms
 
 <IT::>Missing expected thrown error
 
-<FAILED::>Test Failed : Expected :<:LF:>THROWN: "thrown error"<:LF:>but got :<:LF:>"thrown error"
+<FAILED::>Test Failed : Expected :<:LF:>THROWN: "thrown error"<:LF:>But got :<:LF:>"thrown error"
 
-<COMPLETEDIN::>0.028068 ms
+<COMPLETEDIN::>0.040166 ms
 
 <IT::>Missing expected thrown custom error
 
-<FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>but got :<:LF:>ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}
+<FAILED::>Test Failed : Expected :<:LF:>THROWN: ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}<:LF:>But got :<:LF:>ERROR:{ custom-error<:LF:>    { error-message "thrown custom error" }<:LF:>    { integer-argument 1 }<:LF:>}
 
-<COMPLETEDIN::>0.056286 ms
+<COMPLETEDIN::>0.076680 ms
 
-<COMPLETEDIN::>0.952354 ms
+<COMPLETEDIN::>1.040959 ms
