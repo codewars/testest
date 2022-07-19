@@ -30,7 +30,7 @@ MAIN: run-tests
 where `run-tests` calls `solve` with different test vectors for each test case.
 
 ### Test cases
-Test cases are partitioned into one or more `describe#{` sections, where each section has one or more test cases grouped under `it#{`. A single test case is run by `<{ ... actual results ... -> ... expected results ... }>` where both sides can contain words that are called to process inputs and/or outputs. The test case checks if the implicit sequence of actual results on the left of `->` compares equal (using the `=` word) to the sequence of expected results on the right. It passes upon success, and fails upon failure. This is reported in the Codewars runner. Note that any `<{ .. }>` does not affect the stack when it has completed. Both `describe#{` sections as well as `it#{` sections report their execution times at the end of a section.
+Test cases are partitioned into one or more `describe#{` sections, which can be nested, where each section has one or more test cases grouped under section `it#{`. A single test case is run by `<{ ... actual results ... -> ... expected results ... }>` where both sides can contain words that are called to process inputs and/or outputs. The test case checks if the implicit sequence of actual results on the left of `->` compares equal (using the `=` word) to the sequence of expected results on the right. It passes upon success, and fails upon failure. This is reported in the Codewars runner. Note that any `<{ .. }>` does not affect the stack when it has completed. Both `describe#{` and `it#{` sections report their execution time (load and compile time before `MAIN:` can be determined from the environment).
 
 Typical Factor testcode to test a solution `solve ( a b c -- d )` looks like:
 ```
@@ -76,7 +76,7 @@ Both `passed` and `failed` are quotations, one of which is called after each tes
 : failed ( error -- )
 ```
 
-The argument to `failed` is an `assert-sequence` error with slots `got` for a sequence of actual results and `expected` for a sequence of expected results. Both the `passed` and `failed` quotations can write messages to the output stream. Newlines are converted to platform specific line separators.
+The argument to `failed` is an `assert-sequence` error with slots `got` for a sequence of actual results and `expected` for a sequence of expected results, the last element is the top of the stack. Both the `passed` and `failed` quotations can write messages to the output stream. Newlines are converted to platform specific line separators.
 
 Custom messages can be nested, and are restored outside the scope of the quotation passed to the `with-passed`, `with-failed`, and `with-passed-failed` combinators.
 
@@ -97,7 +97,7 @@ Custom messages can be nested, and are restored outside the scope of the quotati
 
 ### Handling of errors
 
-Factor can throw errors, and testcode may need to test that. As errors are first-class objects, the testest library supports such testing in an intuitive way. If test code on the right side of the arrow `->` throws an error, the left side is expected to throw that same error, if it does, the test passes, if it doesn't the test fails. On the other hand, if the code on the right does not throw an error, any error thrown by the left side is considered as a real error and reported as such. To help analysing thrown errors, all `ERROR:`s are printed in a special format by the default failure handler. *All* errors inside `<{ .. }>` are captured and *not* rethrown.
+Factor can throw errors, and as errors are first-class objects, the testest library supports testing of thrown errors in an intuitive way. If test code on the right side of the arrow `->` throws an error, the left side is expected to throw that same error, if it does, the test passes, if it doesn't the test fails. On the other hand, if the code on the right does not throw an error, any error thrown by the left side is considered as an unexpected error and reported as such. To help analysing thrown errors, all `ERROR:`s are printed in a special format by the default failure handler, and thrown errors are marked. *All* errors inside `<{ .. }>` are captured and *not* rethrown.
 
 ### Handling of errors example
 
