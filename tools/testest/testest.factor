@@ -40,7 +40,7 @@ ERROR: thrown error ;
 : unexpected-error? ( got expected -- ? ) [ ?first thrown? ] bi@ not and ;
 
 : (unit-test) ( test-quot expected-quot -- )
-  [ { } swap catch-all ] bi@ 2dup unexpected-error? [ drop first error# (error.) ]
+  swap [ { } swap catch-all ] bi@ swap 2dup unexpected-error? [ drop first error# (error.) ]
   [ '[ _ _ assert-sequence= passed# passed. ] [ failed# failed. ] recover ] if nl
 ;
 
