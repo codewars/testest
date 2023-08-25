@@ -5,9 +5,16 @@ io io.streams.string io.styles kernel locals math namespaces parser prettyprint 
 prettyprint.config prettyprint.custom quotations sequences splitting system ;
 IN: tools.testest
 
-: describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
-: it#{ ( description -- starttime ) nl "<IT::>%s" printf nl flush nano-count ;
-: }# ( starttime -- ) nano-count swap - 1000000 / nl "<COMPLETEDIN::>%f ms" printf nl ;
+DEFER: }# delimiter
+: timed-block ( accum tag -- accum )
+  \ }# parse-until >quotation '[
+     nl _ printf nl flush nano-count _ dip
+     nano-count swap - 1000000 / nl "<COMPLETEDIN::>%f ms" printf nl
+  ] append! ;
+
+SYNTAX: describe#{ "<DESCRIBE::>%s" timed-block ;
+SYNTAX: it#{ "<IT::>%s" timed-block ;
+
 
 ! user redefinable test result message quotations
 
