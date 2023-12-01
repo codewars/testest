@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# Run Factor kata in the current directory.
-
-WORKSPACE=/workspace/
-C=$(docker container create --rm -w $WORKSPACE ghcr.io/codewars/factor:latest factor -run=kata.tests)
-docker container cp ./. $C:$WORKSPACE
-docker container start --attach $C
