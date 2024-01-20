@@ -2,7 +2,7 @@
 
 USING: accessors arrays classes classes.error continuations debugger formatting fry inspector
 io io.streams.string io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
-prettyprint.config prettyprint.custom quotations sequences splitting system ;
+prettyprint.config prettyprint.custom prettyprint.sections quotations sequences splitting system ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
@@ -58,6 +58,10 @@ SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffi
 <PRIVATE
 
 : pprint-unlimited ( obj -- ) [ pprint ] without-limits ;
+
+! signature changed from ( obj -- str ) in 0.98 to ( obj -- ) in 0.99, use 0.98's definition
+: error-in-pprint ( obj -- str )
+    class-of name>> "~pprint error: " "~" surround ;
 
 : seq. ( seq -- )
   [
