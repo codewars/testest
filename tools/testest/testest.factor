@@ -1,8 +1,9 @@
-! Copyright 2019-2022 nomennescio
+! Copyright 2019-2024 nomennescio
 
-USING: accessors arrays classes classes.error continuations debugger formatting fry inspector
+USING: accessors arrays assocs classes classes.error compiler.errors continuations debugger formatting fry inspector
 io io.streams.string io.styles kernel locals math namespaces parser prettyprint prettyprint.backend
-prettyprint.config prettyprint.custom prettyprint.sections quotations sequences splitting system ;
+prettyprint.config prettyprint.custom prettyprint.sections quotations sequences splitting
+stack-checker.errors summary system tools.errors ;
 IN: tools.testest
 
 : describe#{ ( description -- starttime ) nl "<DESCRIBE::>%s" printf nl flush nano-count ;
@@ -39,10 +40,17 @@ ERROR: thrown error ;
 
 : unexpected-error? ( got expected -- ? ) [ ?first thrown? ] bi@ not and ;
 
-: (unit-test) ( test-quot expected-quot -- )
-  swap [ { } swap catch-all ] bi@ swap 2dup unexpected-error? [ drop first error# (error.) ]
-  [ '[ _ _ assert-sequence= passed# passed. ] [ failed# failed. ] recover ] if nl
-;
+SYMBOL: once
+: only-once ( ..a quot: ( ..a -- ... ) -- ... ) once get [ 2drop ] [ call once on ] if ; inline
+
+SYMBOL: no-compiler-errors
+: without-compiler-errors ( ..a b quot: ( ..a b -- ... ) -- ... )
+  no-compiler-errors compiler-errors get values [ on call ] [ [ off ] dip [ errors. ] only-once 3drop ] if-empty ; inline
+
+: (unit-test) ( test-quot: ( -- ... ) expected-quot: ( -- ... ) -- )
+  [ swap [ { } swap catch-all ] bi@ swap 2dup unexpected-error? [ drop first error# (error.) ]
+    [ '[ _ _ assert-sequence= passed# passed. ] [ failed# failed. ] recover ] if nl
+  ] without-compiler-errors ;
 
 PRIVATE>
 
@@ -77,7 +85,7 @@ SYMBOL: ERROR:{
 ! print errors differently from tuples
 
 M: tuple pprint* dup class-of error-class? [ pprint-error ] [ pprint-tuple ] if ;
-M: tuple error. dup class-of error-class? [ pprint-short ] [ describe ] if ;
+M: tuple error. dup class-of error-class? no-compiler-errors get and [ pprint-short ] [ describe ] if ;
 
 SYMBOL: THROWN:
 M: thrown pprint* THROWN: pprint-word error>> pprint* ;
