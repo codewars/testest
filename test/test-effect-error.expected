@@ -1,0 +1,18 @@
+
+<DESCRIBE::>Compilation error
+
+<IT::>Compilation error in user code
+
+==== test-effect-error.factor
+
+test-effect-error.factor: 6
+
+Asset: wont-infer
+
+Stack effect declaration is wrong
+inferred ( -- x )
+declared ( -- )
+
+<COMPLETEDIN::>0.345100 ms
+
+<COMPLETEDIN::>0.516400 ms
