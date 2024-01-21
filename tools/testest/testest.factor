@@ -60,9 +60,6 @@ SYNTAX: <{ \ -> parse-until >quotation suffix! \ }> parse-until >quotation suffi
 
 ! customized printing
 
-! deprecated
-: lf ( -- ) "<:LF:>" write ;
-
 <PRIVATE
 
 : pprint-unlimited ( obj -- ) [ pprint ] without-limits ;

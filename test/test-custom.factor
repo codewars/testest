@@ -1,11 +1,11 @@
-! Copyright 2019-2022 nomennescio
+! Copyright 2019-2024 nomennescio
 
 USING: accessors debugger io kernel namespaces prettyprint sequences tools.testest ;
 IN: tests
 
 M: assert-sequence error.
   [ "Actually expected :" write expected>> ... ]
-  [ lf "but instead got :" write got>> ... ] bi
+  [ nl "but instead got :" write got>> ... ] bi
 ;
 
 : run-test ( -- )
