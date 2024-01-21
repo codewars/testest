@@ -1,0 +1,29 @@
+test-compilation-error.factor
+
+6: : wont-compile ;
+                   ^
+Expected ( but got ;
+(U) Quotation: [ c-to-factor => ]
+    Word: c-to-factor
+(U) Quotation: [ [ (get-catchstack) push ] dip call => (get-catchstack) pop* ]
+(O) Word: command-line-startup
+(O) Word: run-script
+(O) Word: run-file
+(O) Word: parse-file
+(O) Word: parse-stream
+(O) Word: parse-fresh
+(O) Word: (parse-lines)
+(O) Word: (parse-until)
+(O) Word: parse-until-step
+(O) Word: execute-parsing
+(O) Word: POSTPONE: :
+(O) Word: (:)
+(O) Word: scan-effect
+(O) Word: expect
+(O) Word: unexpected
+(O) Method: M\ object throw
+(U) Quotation: [
+        OBJ-CURRENT-THREAD special-object error-thread set-global
+        current-continuation => error-continuation set-global
+        [ original-error set-global ] [ rethrow ] bi
+    ]
